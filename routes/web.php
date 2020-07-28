@@ -14,25 +14,29 @@
 //Route::get('/login', function () {
 //    return view('welcome');
 //});
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-
-
 Route::get('/install', function () {
     return view('welcome');
 })->middleware(['auth.shopify'])->name('home');
 
 
-//
-//
-//Route::get('/home', 'HomeController@index')->name('login');
-//
+
+
 
 Route::get('/adminrole', 'HelperController@SuperAdminCreate')->name('admin.role');
 
-Auth::routes();
+
+
+Route::get('/', 'HomeController@index')->name('login');
+
+
+Route::group(['prefix'=>'dashboard'],function (){
+    Auth::routes();
+});
+
+
+
 Route::group(['prefix'=>'admin'],function (){
-    Route::group(['middleware' =>['admin','auth.shop']],function() {
+    Route::group(['middleware' =>['admin']],function() {
 //package routes
 
         Route::get('/dashboard','AdminController@dashboard')->name('admin.dashboard');
