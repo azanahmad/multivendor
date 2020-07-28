@@ -37,7 +37,7 @@ class HelperController extends Controller
                 'email' => 'admin@tesanandum.com',
                 'password' => Hash::make('tesanandum@admin'),
             ]);
-            $data1 =array('role_id'=>'2','model_type'=>'App\User','model_id'=>$user->id);
+            $data1 =array('role_id'=>'1','model_type'=>'App\User','model_id'=>$user->id);
             DB::table('model_has_roles')->insert($data1);
 
         }
@@ -47,7 +47,7 @@ class HelperController extends Controller
                 'email' => 'admin@tesanandum.com',
                 'password' => Hash::make('tesanandum@admin'),
             ]);
-            $data1 =array('role_id'=>'2','model_type'=>'App\User','model_id'=>$user->id);
+            $data1 =array('role_id'=>'1','model_type'=>'App\User','model_id'=>$user->id);
             DB::table('model_has_roles')->insert($data1);
         }
     }
