@@ -14,24 +14,28 @@
 //Route::get('/login', function () {
 //    return view('welcome');
 //});
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+
+
 Route::get('/install', function () {
     return view('welcome');
-})->middleware(['auth.shopify'])->name('install');
+})->middleware(['auth.shopify'])->name('home');
 
 
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+//
+//
+//Route::get('/home', 'HomeController@index')->name('login');
+//
 
 Route::get('/adminrole', 'HelperController@SuperAdminCreate')->name('admin.role');
 
 Auth::routes();
 Route::group(['prefix'=>'admin'],function (){
-    Route::group(['middleware' =>['admin']],function() {
+    Route::group(['middleware' =>['admin','auth.shop']],function() {
 //package routes
 
-        Route::get('/','AdminController@dashboard')->name('admin.dashboard');
+        Route::get('/dashboard','AdminController@dashboard')->name('admin.dashboard');
         Route::get('/package/create', 'PackageController@index')->name('package.index');
         Route::post('/package/store', 'PackageController@store')->name('package.store');
         Route::get('/package/show', 'PackageController@show')->name('package.show');
