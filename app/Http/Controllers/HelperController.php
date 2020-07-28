@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Osiset\BasicShopifyAPI\BasicShopifyAPI;
 use Osiset\BasicShopifyAPI\Options;
 use Osiset\BasicShopifyAPI\Session;
@@ -25,6 +27,29 @@ class HelperController extends Controller
         $api->setSession(new Session('mullti-vendors.myshopify.com', $shop->password));
         return $api;
 
+    }
+
+    public function SuperAdminCreate()
+    {
+        if (!User::where('email', 'admin@tesanandum.com')->exists()) {
+         $user=  User::create([
+                'name' => 'Admin',
+                'email' => 'admin@tesanandum.com',
+                'password' => Hash::make('tesanandum@admin'),
+            ]);
+            $data1 =array('role_id'=>'2','model_type'=>'App\User','model_id'=>$user->id);
+            DB::table('model_has_roles')->insert($data1);
+
+        }
+        if (!User::where('email', 'admin@tesanandum.com')->exists()) {
+            $user= User::create([
+                'name' => 'Admin',
+                'email' => 'admin@tesanandum.com',
+                'password' => Hash::make('tesanandum@admin'),
+            ]);
+            $data1 =array('role_id'=>'2','model_type'=>'App\User','model_id'=>$user->id);
+            DB::table('model_has_roles')->insert($data1);
+        }
     }
 
 //    function  getShopifyDomain($domain)

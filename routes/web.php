@@ -18,11 +18,15 @@ Route::get('/install', function () {
     return view('welcome');
 })->middleware(['auth.shopify'])->name('install');
 
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/adminrole', 'HelperController@SuperAdminCreate')->name('admin.role');
+
 Auth::routes();
-
-Route::get('/', 'HomeController@index')->name('home');
-
-
 Route::group(['prefix'=>'admin'],function (){
     Route::group(['middleware' =>['admin']],function() {
 //package routes

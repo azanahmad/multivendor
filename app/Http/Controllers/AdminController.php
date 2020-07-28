@@ -5,17 +5,15 @@ use App\order;
 use App\order_line_items;
 use App\Product;
 use App\Product_status;
-use App\RetailerOrder;
-use App\Shop;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Osiset\BasicShopifyAPI\BasicShopifyAPI;
 use Osiset\BasicShopifyAPI\Options;
 use Osiset\BasicShopifyAPI\Session;
-use Response;
 
 class AdminController extends Controller
 {

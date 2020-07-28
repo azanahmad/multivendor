@@ -557,7 +557,10 @@ class PackageController extends Controller
         $plan=PackageModel::find($request->id);
         $planid=$plan->strip_id;
 
-        $user->newSubscription('Basic', $planid,$billing,$request->id)->create($paymentMethod);
+        $user->newSubscription('Basic', $planid)->create($paymentMethod);
+
+
+
 //            $update=DB::table('subscriptions')->where('stripe_id','=',$paymentMethod)
 //            ->update(['strip'=>1,'billing_address'=>$billing]);
 //            return redirect(route('home'))->with('success', 'Strip Subscription Purchased');
