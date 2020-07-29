@@ -259,8 +259,8 @@ class OrdersController extends Controller
             foreach ($orders as $index =>$order){
 
 
-                $order=new OrdersController();
-                $order->order_sync($order);
+                //$order=new OrdersController();
+                $this->order_sync($order);
 
 
                 die();
