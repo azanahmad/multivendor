@@ -24,7 +24,7 @@ class RolesMiddleware
         }
         else
             {
-            return redirect()->route('dashboard');
+                return view('dashboard.index');
         }
 
     }
