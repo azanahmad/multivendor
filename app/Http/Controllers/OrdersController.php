@@ -62,6 +62,8 @@ class OrdersController extends Controller
     function order_sync($order)
     {
 
+
+
         $product_ids = [];
         $variant_ids  = [];
         foreach($order['line_items'] as $item){
@@ -69,7 +71,7 @@ class OrdersController extends Controller
             array_push($product_ids,$item['product_id']);
         }
 
-
+dd($product_ids);
 
         if(Product::whereIn('shopify_id',$product_ids)->exists()){
 
@@ -137,7 +139,6 @@ class OrdersController extends Controller
                 $new->fulfilled_by = 'store';
                 $new->sync_status = 1;
                 $new->save();
-                dd('hello');
 
                 $cost_to_pay = 0;
 
