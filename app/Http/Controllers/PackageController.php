@@ -83,6 +83,8 @@ class PackageController extends Controller
                 ->withErrors($validator);
         }
 
+
+
         $package = new PackageModel();
 
         $package->package_name = $request->package_name;
@@ -107,6 +109,7 @@ class PackageController extends Controller
             $frequency='6';
 
         }
+
 
 
 
@@ -155,14 +158,16 @@ class PackageController extends Controller
 
 
                 $fre='month';
-                $in='6';
+                $frequency='6';
 
             }
 
             if($request->type=="every 3 months"){
 
+
+
                 $fre='month';
-                $in='3';
+                $frequency='3';
             }
 
             $rates=$request->rates*100;
@@ -170,7 +175,7 @@ class PackageController extends Controller
                 // "amount" => $request->rates,
                 "amount"=>  $rates,
                 "interval" => $fre,
-               "interval_count"=> $in,
+                "interval_count"=> $in,
                 "product" => array(
                     "name" => $request->package_name
                 ),
