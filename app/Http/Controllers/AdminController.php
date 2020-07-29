@@ -7,6 +7,7 @@ use App\Product;
 use App\Product_status;
 use App\User;
 use Carbon\Carbon;
+use http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -324,7 +325,7 @@ class AdminController extends Controller
 
                         $product_shopify_id =  $response->id;
 
-                        dd($productdata);
+
 
                         $product->shopify_id = $product_shopify_id;
                         $price = $product->Price;
