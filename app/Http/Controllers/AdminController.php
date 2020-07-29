@@ -309,7 +309,7 @@ class AdminController extends Controller
                                 "title" => $product->Title,
                                 "body_html" => $product->Discription,
                                 "vendor" => $vendor->name,
-                                "tags" => $tags.$sub_tags,
+                                "tags" => $tags,
 //                                "product_type" => $product->type,
                                 "variants" => $variants_array,
                                 "options" => $options_array,
@@ -320,11 +320,11 @@ class AdminController extends Controller
                         ];
 
 
-                    dd($productdata);
                         $response = $shop->rest('POST', '/admin/api/2020-01/products.json', $productdata)['body']['product'];
 
                         $product_shopify_id =  $response->id;
 
+                        dd($productdata);
 
                         $product->shopify_id = $product_shopify_id;
                         $price = $product->Price;
