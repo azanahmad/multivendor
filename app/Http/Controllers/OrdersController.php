@@ -78,7 +78,6 @@ class OrdersController extends Controller
             if(!order::where('shopify_order_id',$order['id'])->exists()){
 
 
-                dd('hello');
                 $new = new order();
                 $new->shopify_order_id = $order['id'];
                 $new->email = $order['email'];
@@ -119,6 +118,8 @@ class OrdersController extends Controller
                     }
                     $new->customer = json_encode($order['customer'],true);
                 }
+                dd('hello');
+
                 if(isset($order['shipping_address'])){
                     $new->shipping_address = json_encode($order['shipping_address'],true);
                 }
