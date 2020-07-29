@@ -111,7 +111,7 @@ class PackageController extends Controller
         }
 
 
-dd('hee');
+
 
         $plan=$this->setplan($request->package_name,$request->plan_description);
 
@@ -125,7 +125,7 @@ dd('hee');
         $plan->setPaymentDefinitions(array($paymentDefinition));
 
         $plan->setMerchantPreferences($merchantPreferences);
-
+        dd('hee');
 
         try{
 
