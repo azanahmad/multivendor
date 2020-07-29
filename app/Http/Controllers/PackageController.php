@@ -87,6 +87,23 @@ class PackageController extends Controller
 
         $package = new PackageModel();
 
+        if($request->type=="every 3 months"){
+
+
+
+            $request->type='Month';
+            $frequency='3';
+        }
+
+        if($request->type=="every 6 months"){
+
+
+            $request->type='Month';
+            $frequency='6';
+        }
+
+        die();
+
         $package->package_name = $request->package_name;
         $package->no_products_allow = $request->no_products_allow;
         $package->rates = $request->rates;
@@ -96,7 +113,9 @@ class PackageController extends Controller
         $plan=$this->setplan($request->package_name,$request->plan_description);
 
 
-        $paymentDefinition = $this->setCharges($request->plan_description, 'REGULAR', $request->type, '1', '12', $request->rates, 'USD');
+
+
+        $paymentDefinition = $this->setCharges($request->plan_description, 'REGULAR', $request->type, $frequency, '12', $request->rates, 'USD');
 
         $merchantPreferences = $this->setmerchantPreferences();
 
@@ -622,7 +641,7 @@ class PackageController extends Controller
 //                $planController = new PlanController();
 //                $planController->upgrade_plan($subcription->plan_id);
 
-                return redirect(route('home'))->with('success', 'Paypal Subscription Purchased');
+                return redirect(route('dashboard'))->with('success', 'Paypal Subscription Purchased');
 
             } catch (PayPal\Exception\PayPalConnectionException $ex) {
                 echo $ex->getCode();
@@ -638,7 +657,7 @@ class PackageController extends Controller
                 $subcription->delete();
             }
 
-            return redirect()->route('home')->with('form_error', 'user canceled agreement');
+            return redirect()->route('dashboard')->with('form_error', 'user canceled agreement');
 
         }
 

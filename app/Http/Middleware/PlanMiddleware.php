@@ -38,20 +38,18 @@ class PlanMiddleware
 
                 foreach ($user->has_subscription as $sub) {
 
-                    if ($sub->paypal == '0') {
-
                         if($sub->stripe_status =='active') {
                             return $next($request);
                         }
-                    }
 
-                    if($sub->paypal == '1')
-                    {
                         if($sub->paypal_status =='Active') {
                             return $next($request);
                         }
-                    }
-                    return redirect()->route('package.pricing');
+
+                            return redirect()->route('package.pricing');
+
+
+
 
                 }
             }

@@ -67,7 +67,7 @@
                          <td>{{$package->package_name}}</td>
                          <td>{{$package->plan_description}}</td>
                          <td>{{$package->no_products_allow}}</td>
-                         <td>{{$package->rates}}</td>
+                         <td>{{$package->rates}} $</td>
                              @if($package->status==1)
                                  <td><span class="badge badge-primary">Active</span></td>@else <td><span class="badge badge-danger">In Active</span></td>@endif
 

@@ -54,26 +54,17 @@ class HomeController extends Controller
 
                 foreach ($user->has_subscription as $sub) {
 
-                    if ($sub->stripe == '1') {
-
-                        if($sub->stripe_status =='active') {
-                            return view('dashboard.index');
-                        }
+                    if($sub->stripe_status =='active') {
+                        return view('dashboard.index');
                     }
 
-                    if($sub->paypal == '1')
-                    {
-                        if($sub->paypal_status =='Active') {
-                            return view('dashboard.index');
-                        }
+                    if($sub->paypal_status =='Active') {
+                        return view('dashboard.index');
                     }
-
 
                     return redirect()->route('package.pricing');
 
                 }
-
-
             }
             else{
                 return redirect()->route('package.pricing');

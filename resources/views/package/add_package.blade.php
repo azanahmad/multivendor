@@ -80,7 +80,10 @@
                                     <select class="js-select2 form-control" id="val-select2" name="type" style="width: 100%;"  >
                                         {{--                                    <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->--}}
                                         <option value="Month" {{old('type',$package->type ?? '') == 'Month' ? "selected" : "" }}>Monthly</option>
+                                        <option value="every 3 months" {{old('type',$package->type ?? '') == 'every 3 months' ? "selected" : "" }}>Every 3 months</option>
+                                        <option value="every 6 months"{{old('type',$package->type ?? '') == 'every 6 months' ? "selected" : "" }}>Every 6 months</option>
                                         <option value="Year"{{old('type',$package->type ?? '') == 'Year' ? "selected" : "" }}>Yearly</option>
+
                                     </select>
                                 </div>
                             </div>
