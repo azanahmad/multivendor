@@ -76,16 +76,16 @@ class HomeController extends Controller
 
 
         }
-        else if($admin == true)
+
+        if($admin == true)
         {
 
             return redirect()->route('package.pricing');
 
         }
-        else
-        {
-            return view('welcome');
-        }
+       
+            return view('dashboard.index');
+
 
 
 
