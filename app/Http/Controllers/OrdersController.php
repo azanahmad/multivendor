@@ -249,7 +249,7 @@ class OrdersController extends Controller
         $shop = $this->helper->getShopify();
         $response = $shop->rest('GET', '/admin/api/2019-10/orders.json');
         $orders = $response['body']['orders'];
-
+dd($orders);
 
         if(count($orders) >0){
 
