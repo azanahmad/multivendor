@@ -76,16 +76,10 @@ class HomeController extends Controller
 
 
         }
-
-        if($admin == true)
-        {
+        else {
 
             return view('dashboard.index');
-
         }
-
-            return view('dashboard.index');
-
 
 
 
