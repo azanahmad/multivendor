@@ -83,9 +83,14 @@ class PackageController extends Controller
                 ->withErrors($validator);
         }
 
-
-
         $package = new PackageModel();
+
+        $package->package_name = $request->package_name;
+        $package->no_products_allow = $request->no_products_allow;
+        $package->rates = $request->rates;
+        $package->plan_description = $request->plan_description;
+        $package->type=$request->type;
+
 
         if($request->type=="every 3 months"){
 
@@ -104,11 +109,6 @@ class PackageController extends Controller
         }
 
 
-        $package->package_name = $request->package_name;
-        $package->no_products_allow = $request->no_products_allow;
-        $package->rates = $request->rates;
-        $package->plan_description = $request->plan_description;
-        $package->type=$request->type;
 
         $plan=$this->setplan($request->package_name,$request->plan_description);
 
