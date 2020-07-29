@@ -22,7 +22,6 @@
 
 
 
-Route::get('/', 'HomeController@index')->name('dashboard');
 //Route::group(['prefix'=>'admin'],function () {
 
 Auth::routes();
@@ -33,9 +32,9 @@ Route::get('/adminrole', 'HelperController@SuperAdminCreate')->name('admin.role'
 
 
 Route::group(['prefix'=>'admin'],function (){
-    Route::group(['middleware' =>['admin_role']],function() {
+    Route::group(['middleware' =>['auth.shopify']],function() {
 //package routes
-
+        Route::get('/','AdminController@dashboard')->name('home');
         Route::get('/','AdminController@dashboard')->name('admin.dashboard');
         Route::get('/package/create', 'PackageController@index')->name('package.index');
         Route::post('/package/store', 'PackageController@store')->name('package.store');
@@ -87,6 +86,7 @@ Route::group(['prefix'=>'admin'],function (){
 
 
 Route::group(['middleware' =>['vendor_role']],function() {
+    Route::get('/', 'HomeController@index')->name('dashboard');
 
     Route::get('all_products','ProductsController@all_product');
     Route::get('products','ProductsController@index');
