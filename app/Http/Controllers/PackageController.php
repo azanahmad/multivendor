@@ -111,7 +111,7 @@ class PackageController extends Controller
         }
 
 
-
+dd('hee');
 
         $plan=$this->setplan($request->package_name,$request->plan_description);
 
