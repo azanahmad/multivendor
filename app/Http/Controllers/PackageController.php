@@ -93,7 +93,7 @@ class PackageController extends Controller
         $package->plan_description = $request->plan_description;
         $package->type=$request->type;
 
-
+        $frequency='1';
         if($request->type=="every 3 months"){
 
 
@@ -109,9 +109,6 @@ class PackageController extends Controller
             $frequency='6';
 
         }
-
-
-
 
         $plan=$this->setplan($request->package_name,$request->plan_description);
 
