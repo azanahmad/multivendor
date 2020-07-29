@@ -76,7 +76,7 @@ class OrdersController extends Controller
         if(Product::whereIn('shopify_id',$product_ids)->exists()){
 
 
-dd('hello');
+
             if(!order::where('shopify_order_id',$order['id'])->exists()){
 
 
