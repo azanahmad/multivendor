@@ -100,9 +100,9 @@ class PackageController extends Controller
 
             $request->type='Month';
             $frequency='6';
+
         }
 
-        die();
 
         $package->package_name = $request->package_name;
         $package->no_products_allow = $request->no_products_allow;
@@ -144,10 +144,29 @@ class PackageController extends Controller
                 $fre='month';
                 $in='12';
 
-            }else{
+            }
+
+            if($request->type=='Year'){
                 $fre='year';
                 $in='1';
             }
+
+            if($request->type=="every 6 months"){
+
+
+                $fre='month';
+                $in='6';
+
+            }
+
+            if($request->type=="every 3 months"){
+
+
+
+                $fre='month';
+                $in='3';
+            }
+
             $rates=$request->rates*100;
             \Stripe\Plan::create(array(
                 // "amount" => $request->rates,
