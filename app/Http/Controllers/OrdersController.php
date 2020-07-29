@@ -251,13 +251,19 @@ class OrdersController extends Controller
         $orders = $response['body']['orders'];
 
 
-
         if(count($orders) >0){
 
 //            $orders = $response->body->orders;
 
 
             foreach ($orders as $index =>$order){
+
+
+                $order=new OrdersController();
+                $order->order_sync($order);
+
+
+                die();
                 $product_ids = [];
                 $variant_ids  = [];
                 foreach($order['line_items'] as $item){
