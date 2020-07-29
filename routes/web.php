@@ -18,23 +18,25 @@
 //
 //    return view('welcome');
 //
-//})->middleware(['auth.shopify']);
+//})->middleware(['auth.shopify'])->name('l');
 
 
 
 //Route::group(['prefix'=>'admin'],function () {
 
-//Auth::routes();
+Auth::routes();
 
 //});
 
 Route::get('/adminrole', 'HelperController@SuperAdminCreate')->name('admin.role');
+Route::get('/', 'HomeController@index')->name('dashboard');
 
 
 Route::group(['prefix'=>'admin'],function (){
-    Route::group(['middleware' =>['auth.shopify']],function() {
+
+    Route::group(['middleware' =>['admin_role']],function() {
 //package routes
-        Route::get('/','AdminController@dashboard')->name('home');
+
         Route::get('/','AdminController@dashboard')->name('admin.dashboard');
         Route::get('/package/create', 'PackageController@index')->name('package.index');
         Route::post('/package/store', 'PackageController@store')->name('package.store');
@@ -84,49 +86,49 @@ Route::group(['prefix'=>'admin'],function (){
     });
 });
 
-//
-//Route::group(['middleware' =>['vendor_role']],function() {
-//    Route::get('/', 'HomeController@index')->name('dashboard');
-//
-//    Route::get('all_products','ProductsController@all_product');
-//    Route::get('products','ProductsController@index');
-//    Route::post('post_product','ProductsController@product_save');
-//    Route::get('edit/{id}','ProductsController@edit');
-//    Route::post('update/{id}','ProductsController@update');
-//    Route::get('delete/{id}','ProductsController@delete_product');
-//    Route::get('product/view/{id}','ProductsController@view_product');
-//    Route::post('edit_varient_save/{id}/product/{product_id}','ProductsController@edit_varient_save')->name('edit_varient_save');
-//
-//    Route::post('varient_update/{id}/product/{product_id}','ProductsController@varient_update')->name('varient_update');
-//
-//    Route::post('edit_varient_details/{id}/product/{product_id}','ProductsController@edit_varient_details')->name('edit_varient_details');
-//
-//    Route::get('Product/{product_id}/Variant/{id}','ProductsController@edit_varient')->name('edit_varient');
-//
-//    Route::post('varient/delete','ProductsController@varient_delete');
-//
-//    Route::post('varient/image_add','ProductsController@varient_image_add')->name('varient_image_add');
-//
-//    Route::post('varient_add/{id}','ProductsController@varient_add')->name('varient_add');
-//
-//    Route::post('image/delete','ProductsController@image_delete')->name('image_delete');
-//
-//    //add shipping route
-//    Route::get('shipping_zone','ShippingZoneController@shipping');
-//    Route::post('create_zones','ZoneController@create')->name('zone.create');
-//    Route::post('/zone/{id}/update','ZoneController@update')->name('zone.update');
-//    Route::any('/zone/{id}/delete','ZoneController@delete')->name('zone.delete');
-//    Route::post('/zone/rate/{id}','ZoneController@rate_create')->name('zone.rate.create');
-//    Route::post('/zone/rate/{id}/update','ZoneController@rate_update')->name('zone.rate.update');
-//    Route::any('/zone/rate/{id}/delete','ZoneController@rate_delete')->name('zone.rate.delete');
-//
-//    Route::get('/orders/all','OrdersController@vendorOrder')->name('orders.vendor.index');
-//    Route::get('Orders/{id}/details','OrdersController@vendor_order_details')->name('vendor_order_details');
-//    Route::get('/orders/view/{id}/fulfillment','OrdersController@vendor_fulfill_order')->name('vendor_fulfill_order');
-//    Route::post('/orders/view/{id}/fulfillment/process','OrdersController@vendor_fulfillment_order')->name('vendor.order.fulfillment.process');
-//    Route::post('/orders/{id}/fulfillment/tracking','OrdersController@fulfillment_add_tracking')->name('vendor.order.fulfillment.tracking');
-//
-//});
+
+Route::group(['middleware' =>['vendor_role']],function() {
+
+
+    Route::get('all_products','ProductsController@all_product');
+    Route::get('products','ProductsController@index');
+    Route::post('post_product','ProductsController@product_save');
+    Route::get('edit/{id}','ProductsController@edit');
+    Route::post('update/{id}','ProductsController@update');
+    Route::get('delete/{id}','ProductsController@delete_product');
+    Route::get('product/view/{id}','ProductsController@view_product');
+    Route::post('edit_varient_save/{id}/product/{product_id}','ProductsController@edit_varient_save')->name('edit_varient_save');
+
+    Route::post('varient_update/{id}/product/{product_id}','ProductsController@varient_update')->name('varient_update');
+
+    Route::post('edit_varient_details/{id}/product/{product_id}','ProductsController@edit_varient_details')->name('edit_varient_details');
+
+    Route::get('Product/{product_id}/Variant/{id}','ProductsController@edit_varient')->name('edit_varient');
+
+    Route::post('varient/delete','ProductsController@varient_delete');
+
+    Route::post('varient/image_add','ProductsController@varient_image_add')->name('varient_image_add');
+
+    Route::post('varient_add/{id}','ProductsController@varient_add')->name('varient_add');
+
+    Route::post('image/delete','ProductsController@image_delete')->name('image_delete');
+
+    //add shipping route
+    Route::get('shipping_zone','ShippingZoneController@shipping');
+    Route::post('create_zones','ZoneController@create')->name('zone.create');
+    Route::post('/zone/{id}/update','ZoneController@update')->name('zone.update');
+    Route::any('/zone/{id}/delete','ZoneController@delete')->name('zone.delete');
+    Route::post('/zone/rate/{id}','ZoneController@rate_create')->name('zone.rate.create');
+    Route::post('/zone/rate/{id}/update','ZoneController@rate_update')->name('zone.rate.update');
+    Route::any('/zone/rate/{id}/delete','ZoneController@rate_delete')->name('zone.rate.delete');
+
+    Route::get('/orders/all','OrdersController@vendorOrder')->name('orders.vendor.index');
+    Route::get('Orders/{id}/details','OrdersController@vendor_order_details')->name('vendor_order_details');
+    Route::get('/orders/view/{id}/fulfillment','OrdersController@vendor_fulfill_order')->name('vendor_fulfill_order');
+    Route::post('/orders/view/{id}/fulfillment/process','OrdersController@vendor_fulfillment_order')->name('vendor.order.fulfillment.process');
+    Route::post('/orders/{id}/fulfillment/tracking','OrdersController@fulfillment_add_tracking')->name('vendor.order.fulfillment.tracking');
+
+});
 
 Route::get('/Plan/{id}/Subscription/', 'PackageController@cart')->name('cart_page');
 Route::get('/list', 'PackageController@list_plan');

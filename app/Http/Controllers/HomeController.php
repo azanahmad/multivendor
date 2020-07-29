@@ -69,18 +69,26 @@ class HomeController extends Controller
                     }
 
 
+                    return redirect()->route('package.pricing');
+
                 }
 
 
             }
+            else{
+                return redirect()->route('package.pricing');
+            }
 
 
         }
-        else {
 
-            return view('dashboard.index');
+        if($admin == true)
+        {
+            return redirect()->route('admin.dashboard');
         }
 
+
+        echo 'App Installed';
 
 
 

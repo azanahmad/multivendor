@@ -29,6 +29,8 @@ class PlanMiddleware
 
         if($vendor == true)
         {
+
+
             $user=User::find(Auth::id());
             //$user->has_subscription();
 
@@ -49,7 +51,7 @@ class PlanMiddleware
                             return $next($request);
                         }
                     }
-
+                    return redirect()->route('package.pricing');
 
                 }
             }
