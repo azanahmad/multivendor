@@ -18,12 +18,12 @@ class RolesMiddleware
 
         $role = auth()->user()->roles()->pluck('role_id');
 
-        if($role[0]=='1')
+        if($role[0] =='1')
         {
             return $next($request);
         }
         else{
-            return redirect()->route('home');
+            return redirect()->route('login');
         }
 
     }

@@ -14,32 +14,29 @@
 //Route::get('/login', function () {
 //    return view('welcome');
 //});
-Route::get('/install', function () {
-    return view('welcome');
-})->middleware(['auth.shopify'])->name('home');
+//Route::get('/shopify_install', function () {
+//
+//    return view('welcome');
+//
+//})->middleware(['auth.shopify']);
 
 
 
+Route::get('/', 'HomeController@index')->name('home');
+//Route::group(['prefix'=>'admin'],function () {
 
+Auth::routes();
+
+//});
 
 Route::get('/adminrole', 'HelperController@SuperAdminCreate')->name('admin.role');
 
 
-
-Route::get('/', 'HomeController@index')->name('login');
-
-
-Route::group(['prefix'=>'dashboard'],function (){
-    Auth::routes();
-});
-
-
-
 Route::group(['prefix'=>'admin'],function (){
-    Route::group(['middleware' =>['admin']],function() {
+    Route::group(['middleware' =>['admin_role']],function() {
 //package routes
 
-        Route::get('/dashboard','AdminController@dashboard')->name('admin.dashboard');
+        Route::get('/','AdminController@dashboard')->name('admin.dashboard');
         Route::get('/package/create', 'PackageController@index')->name('package.index');
         Route::post('/package/store', 'PackageController@store')->name('package.store');
         Route::get('/package/show', 'PackageController@show')->name('package.show');
@@ -89,7 +86,7 @@ Route::group(['prefix'=>'admin'],function (){
 });
 
 
-Route::group(['middleware' =>['vendor']],function() {
+Route::group(['middleware' =>['vendor_role']],function() {
 
     Route::get('all_products','ProductsController@all_product');
     Route::get('products','ProductsController@index');

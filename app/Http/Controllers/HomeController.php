@@ -33,6 +33,13 @@ class HomeController extends Controller
             ->where('users.id','=',Auth::id())
             ->first();
 
+        $admin= DB::table('users')
+            ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->select('users.id','users.name','users.email','users.package')
+            ->where('model_has_roles.role_id','=','1')
+            ->where('users.id','=',Auth::id())
+            ->first();
+
         if($vendor == true)
         {
 
@@ -66,19 +73,21 @@ class HomeController extends Controller
 
 
             }
-            else{
 
-                return redirect()->route('package.pricing');
-            }
 
+        }
+        else if($admin == true)
+        {
+
+            return redirect()->route('package.pricing');
         }
         else
         {
-            return redirect()->route('admin.dashboard');
+            return view('welcome');
         }
 
 
-return view('dashboard.index');
+
 
     }
 }
