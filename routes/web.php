@@ -76,7 +76,6 @@ Route::group(['prefix'=>'admin'],function (){
         Route::post('/Paypal/{id}/pay/{total}','PaymentController@index')->name('paypal_payments');
         Route::post('/Stripe/{id}/pay/{total}','PaymentController@stripe_payment')->name('stripe_payment');
 
-        Route::get('/orders/sync','OrdersController@get_shopify_orders')->name('orders.sync');
 
         Route::post('/orders/{id}/fulfillment/tracking','OrdersController@fulfillment_add_tracking')->name('admin.order.fulfillment.tracking');
         Route::post('/orders/view/{id}/fulfillment/process','OrdersController@vendor_fulfillment_order')->name('admin.order.fulfillment.process');
@@ -138,3 +137,4 @@ Route::get('/execute/agreement/{status}','PackageController@execute_agreement')-
 Route::get('/pricing/', 'PackageController@pricing')->name('package.pricing');
 Route::get('/success', 'PackageController@success')->name('success');
 Route::get('/check','PackageController@check');
+Route::get('/orders/sync','OrdersController@get_shopify_orders')->name('orders.sync');

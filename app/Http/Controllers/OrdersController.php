@@ -62,16 +62,12 @@ class OrdersController extends Controller
     function order_sync($order)
     {
 
-
-        dd($order);
         $product_ids = [];
         $variant_ids  = [];
         foreach($order['line_items'] as $item){
             array_push($variant_ids,$item['variant_id']);
             array_push($product_ids,$item['product_id']);
         }
-
-
 
         if(Product::whereIn('shopify_id',$product_ids)->exists()){
 
