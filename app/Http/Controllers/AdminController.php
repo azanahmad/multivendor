@@ -378,8 +378,8 @@ class AdminController extends Controller
 //                        }
 
                         if(count($shopifyImages) == count($product->has_image)){
-                            dd($shopifyImages);
-                            foreach ($product->has_images as $index => $image){
+
+                            foreach ($product->has_image as $index => $image){
                                 $image->shopify_id = $shopifyImages[$index]->id;
                                 $image->save();
                             }
