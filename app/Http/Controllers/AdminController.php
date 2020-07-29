@@ -351,7 +351,7 @@ class AdminController extends Controller
                         }
 
 
-                        dd($response);
+
 //                        foreach ($product->has_platforms as $index => $platform){
 //                            $index = $index+1;
 //                            $productdata = [
@@ -383,7 +383,7 @@ class AdminController extends Controller
                                 $image->save();
                             }
                         }
-
+                        dd($response);
                         foreach ($product->varients as $index => $v){
                             if($v->has_image != null){
                                 $i = [
