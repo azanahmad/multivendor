@@ -34,7 +34,6 @@ class PaymentController extends Controller
     public function index(Request $request,$id,$total)
     {
 
-        dd($request->email);
 
         $orders=order_line_items::where('vendor_id','=',$id)
             ->where('fulfillment_status','fulfilled')
@@ -105,6 +104,7 @@ class PaymentController extends Controller
             return redirect()->back()->with('success','Payment Transfer Successfully');
         }
         catch (\PayPal\Exception\PayPalConnectionException $ex) {
+            dd($ex);
 
             return redirect()->back()->with('form_error','Try again later!');
         }
