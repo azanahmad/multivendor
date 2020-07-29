@@ -69,6 +69,8 @@ class OrdersController extends Controller
             array_push($product_ids,$item['product_id']);
         }
 
+        dd($product_ids);
+
         if(Product::whereIn('shopify_id',$product_ids)->exists()){
 
 
