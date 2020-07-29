@@ -16,6 +16,7 @@ class CreateOrderPaymentsTable extends Migration
         Schema::create('order_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('vendor_id')->nullable();
+            //$table->unsignedBigInteger('order_id')->nullable();
             $table->string('payment')->nullable();
             $table->unsignedBigInteger('paypal')->nullable();
             $table->unsignedBigInteger('stripe')->nullable();
