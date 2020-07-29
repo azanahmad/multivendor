@@ -119,13 +119,13 @@ class PackageController extends Controller
 
 
         $paymentDefinition = $this->setCharges($request->plan_description, 'REGULAR', $request->type, $frequency, '12', $request->rates, 'USD');
-
+dd('hello');
         $merchantPreferences = $this->setmerchantPreferences();
 
         $plan->setPaymentDefinitions(array($paymentDefinition));
 
         $plan->setMerchantPreferences($merchantPreferences);
-        dd('hee');
+
 
         try{
 
