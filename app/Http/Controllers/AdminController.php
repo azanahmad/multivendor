@@ -344,14 +344,14 @@ class AdminController extends Controller
                             ];
                             $shop->rest('PUT', '/admin/api/2019-10/variants/' . $variant_id .'.json', $i);
                         }
-                        dd($response);
+
                         foreach ($product->varients as $index => $v){
                             $v->shopify_id = $shopifyVariants[$index]->id;
                             $v->save();
                         }
 
 
-
+                        dd($response);
 //                        foreach ($product->has_platforms as $index => $platform){
 //                            $index = $index+1;
 //                            $productdata = [
