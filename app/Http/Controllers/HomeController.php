@@ -80,10 +80,10 @@ class HomeController extends Controller
         if($admin == true)
         {
 
-            return redirect()->route('package.pricing');
+            return view('dashboard.index');
 
         }
-       
+
             return view('dashboard.index');
 
 
