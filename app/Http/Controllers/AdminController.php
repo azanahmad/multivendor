@@ -325,11 +325,13 @@ class AdminController extends Controller
 
                         $product_shopify_id =  $response->id;
 
-                        dd($response);
 
                         $product->shopify_id = $product_shopify_id;
                         $price = $product->Price;
                         $product->save();
+
+                        dd($response);
+
 
                         $shopifyImages = $response->images;
                         $shopifyVariants = $response->variants;
