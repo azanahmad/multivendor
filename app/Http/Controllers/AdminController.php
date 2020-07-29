@@ -347,6 +347,7 @@ class AdminController extends Controller
                             $v->save();
                         }
 
+                        dd($response);
 
 //                        foreach ($product->has_platforms as $index => $platform){
 //                            $index = $index+1;
