@@ -330,7 +330,7 @@ class AdminController extends Controller
                         $price = $product->Price;
                         $product->save();
 
-                        dd($response);
+
 
 
                         $shopifyImages = $response->images;
@@ -344,6 +344,7 @@ class AdminController extends Controller
                             ];
                             $shop->rest('PUT', '/admin/api/2019-10/variants/' . $variant_id .'.json', $i);
                         }
+                        dd($response);
                         foreach ($product->varients as $index => $v){
                             $v->shopify_id = $shopifyVariants[$index]->id;
                             $v->save();
