@@ -158,7 +158,7 @@ class PackageController extends Controller
 
 
                 $fre='month';
-                $frequency='6';
+                $in='6';
 
             }
 
@@ -167,7 +167,7 @@ class PackageController extends Controller
 
 
                 $fre='month';
-                $frequency='3';
+                $in='3';
             }
 
             $rates=$request->rates*100;
