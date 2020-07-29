@@ -21,10 +21,10 @@ class HelperController extends Controller
 //            return $this->api;
         $options = new Options();
         $options->setVersion('2020-01');
-        $domain = 'cursosdereiki.myshopify.com';
+        $domain = 'mullti-vendors.myshopify.com';
         $api = new BasicShopifyAPI($options);
         $shop = User::where('name', $domain)->first();
-        $api->setSession(new Session('cursosdereiki.myshopify.com', $shop->password));
+        $api->setSession(new Session('mullti-vendors.myshopify.com', $shop->password));
         return $api;
 
     }

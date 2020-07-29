@@ -23,7 +23,7 @@ class RolesMiddleware
             return $next($request);
         }
         else{
-            return redirect()->route('login');
+            return redirect()->route('dashboard');
         }
 
     }

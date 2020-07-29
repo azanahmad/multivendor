@@ -22,7 +22,7 @@
 
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('dashboard');
 //Route::group(['prefix'=>'admin'],function () {
 
 Auth::routes();

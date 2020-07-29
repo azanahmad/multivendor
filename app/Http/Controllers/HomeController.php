@@ -80,6 +80,7 @@ class HomeController extends Controller
         {
 
             return redirect()->route('package.pricing');
+
         }
         else
         {

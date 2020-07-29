@@ -36,7 +36,7 @@ class PlanMiddleware
 
                 foreach ($user->has_subscription as $sub) {
 
-                    if ($sub->strip == '1') {
+                    if ($sub->paypal == '0') {
 
                         if($sub->stripe_status =='active') {
                             return $next($request);
