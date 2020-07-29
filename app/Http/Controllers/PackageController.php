@@ -154,7 +154,7 @@ class PackageController extends Controller
             if($request->type=="every 6 months"){
 
 
-                $fre='month';
+                $fre='every 6 months';
                 $in='6';
 
             }
@@ -163,7 +163,7 @@ class PackageController extends Controller
 
 
 
-                $fre='month';
+                $fre='every 3 months';
                 $in='3';
             }
 
@@ -172,7 +172,7 @@ class PackageController extends Controller
                 // "amount" => $request->rates,
                 "amount"=>  $rates,
                 "interval" => $fre,
-//                "interval_count"=> $in,
+              //  "interval_count"=> $in,
                 "product" => array(
                     "name" => $request->package_name
                 ),
