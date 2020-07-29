@@ -320,7 +320,7 @@ class AdminController extends Controller
                         ];
 
 
-
+                    dd($productdata);
                         $response = $shop->rest('POST', '/admin/api/2020-01/products.json', $productdata)['body']['product'];
 
                         $product_shopify_id =  $response->id;
