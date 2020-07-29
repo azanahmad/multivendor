@@ -117,7 +117,7 @@
                                     <td class="text-center" style="vertical-align: middle">
 
                                         <div class="btn-group mr-2 mb-2" role="group" aria-label="Alternate Primary First group">
-                                            <a class="btn btn-xs btn-sm btn-success" type="button" href="{{url('admin/product/view/'.$products->id)}}" data-toggle="tooltip" data-original-title="View Product">
+                                            <a class="btn btn-xs btn-sm btn-success" type="button" href="{{url('admin/product/view/'.$products->id)}}" data-toggle="tooltip" data-original-title="View Product" title="View Product">
                                                 <i class="fa fa-eye"></i>
                                             </a>
 
@@ -125,10 +125,10 @@
                                             @elseif($products->product_status->admin_status=='rejected')
                                             @else
                                                 <button  class="btn btn-sm btn-warning approve"
-                                                         type="button" data-toggle="tooltip" title=""
+                                                         type="button" data-toggle="tooltip" title="Approve Product"
                                                          data-original-title="Approve Product" data-id="{{$products->id}}"><i class="fa fa-check-circle"></i></button>
                                                 <button  class="btn btn-sm btn-warning rejected"
-                                                         type="button" data-toggle="tooltip" title=""
+                                                         type="button" data-toggle="tooltip" title="Reject Product"
                                                          data-original-title="Rejected Product" data-id="{{$products->id}}"><i class="fa fa-ban" ></i></button>
                                         </div>
                                         @endif
