@@ -33,7 +33,7 @@ Route::get('/adminrole', 'HelperController@SuperAdminCreate')->name('admin.role'
 
 
 Route::group(['prefix'=>'admin'],function (){
-    Route::group(['middleware' =>['admin_role']],function() {
+//    Route::group(['middleware' =>['admin_role']],function() {
 //package routes
 
         Route::get('/','AdminController@dashboard')->name('admin.dashboard');
@@ -82,7 +82,7 @@ Route::group(['prefix'=>'admin'],function (){
         Route::post('/orders/{id}/fulfillment/tracking','OrdersController@fulfillment_add_tracking')->name('admin.order.fulfillment.tracking');
         Route::get('/vendor/{id}/history','VendorController@history')->name('vendor.history');
 
-    });
+  //  });
 });
 
 

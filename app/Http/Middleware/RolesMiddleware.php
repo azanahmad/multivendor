@@ -22,7 +22,8 @@ class RolesMiddleware
         {
             return $next($request);
         }
-        else{
+        else
+            {
             return redirect()->route('dashboard');
         }
 
