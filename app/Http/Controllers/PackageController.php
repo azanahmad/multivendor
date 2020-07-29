@@ -94,6 +94,7 @@ class PackageController extends Controller
         $package->type=$request->type;
 
         $frequency='1';
+
         if($request->type=="every 3 months"){
 
 
@@ -116,7 +117,7 @@ class PackageController extends Controller
 
 
         $paymentDefinition = $this->setCharges($request->plan_description, 'REGULAR', $request->type, $frequency, '12', $request->rates, 'USD');
-dd('hello');
+
         $merchantPreferences = $this->setmerchantPreferences();
 
         $plan->setPaymentDefinitions(array($paymentDefinition));
