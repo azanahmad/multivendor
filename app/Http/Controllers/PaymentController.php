@@ -81,7 +81,6 @@ class PaymentController extends Controller
         {
             $output = $payouts->createSynchronous($this->apicontext );
             $batch_id =$output->batch_header->payout_batch_id;
-            dd('hello');
             foreach ($payments as $payment)
             {
                 $order_payment=new OrderPayments();
@@ -93,6 +92,7 @@ class PaymentController extends Controller
                 $order_payment->status='paid';
                 $order_payment->save();
             }
+            dd('hello');
 
             foreach ($payments as $pay)
             {
