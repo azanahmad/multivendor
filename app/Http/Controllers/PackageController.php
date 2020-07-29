@@ -161,8 +161,6 @@ class PackageController extends Controller
 
             if($request->type=="every 3 months"){
 
-
-
                 $fre='month';
                 $in='3';
             }
