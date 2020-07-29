@@ -34,6 +34,8 @@ class PaymentController extends Controller
     public function index(Request $request,$id,$total)
     {
 
+        dd($request->email);
+
         $orders=order_line_items::where('vendor_id','=',$id)
             ->where('fulfillment_status','fulfilled')
             ->where('payment_status',0)->get();
@@ -69,6 +71,7 @@ class PaymentController extends Controller
                         "value":'.$total.',
                         "currency":"USD"
                     }'));
+
 
         $payouts->setSenderBatchHeader($senderBatchHeader)->addItem($senderItem);
 

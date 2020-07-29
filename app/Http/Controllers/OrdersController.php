@@ -262,10 +262,8 @@ class OrdersController extends Controller
 
 
                 //$order=new OrdersController();
-                $this->order_sync($order);
 
 
-                die();
                 $product_ids = [];
                 $variant_ids  = [];
                 foreach($order['line_items'] as $item){
