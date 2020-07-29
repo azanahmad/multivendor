@@ -325,7 +325,7 @@ class AdminController extends Controller
 
                         $product_shopify_id =  $response->id;
 
-
+                        dd($response);
 
                         $product->shopify_id = $product_shopify_id;
                         $price = $product->Price;
@@ -347,7 +347,7 @@ class AdminController extends Controller
                             $v->save();
                         }
 
-                        dd($response);
+
 
 //                        foreach ($product->has_platforms as $index => $platform){
 //                            $index = $index+1;
