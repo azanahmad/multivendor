@@ -118,7 +118,6 @@ class OrdersController extends Controller
                     }
                     $new->customer = json_encode($order['customer'],true);
                 }
-                dd('hello');
 
                 if(isset($order['shipping_address'])){
                     $new->shipping_address = json_encode($order['shipping_address'],true);
@@ -138,6 +137,7 @@ class OrdersController extends Controller
                 $new->fulfilled_by = 'store';
                 $new->sync_status = 1;
                 $new->save();
+                dd('hello');
 
                 $cost_to_pay = 0;
 
