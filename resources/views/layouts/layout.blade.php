@@ -1165,7 +1165,6 @@ MAIN CONTENT LAYOUT
 
 
     });
-
 </script>
 @yield('scripts')
 </body>

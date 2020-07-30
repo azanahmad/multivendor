@@ -46,6 +46,11 @@ Route::group(['prefix'=>'admin'],function (){
         Route::post('/package/delete/', 'PackageController@destroy')->name('package.delete');
         Route::get('/paypal_plan/{id}', 'PackageController@activate')->name('package.activate');
         Route::get('/vendor/list', 'VendorController@show')->name('vendor.show');
+        Route::post('/vendor/delete/', 'VendorController@delete')->name('vendor.delete');
+        Route::post('/vendor/update/{id}', 'VendorController@update')->name('vendor.update');
+
+        Route::get('/vendor/edit/{id}', 'VendorController@edit')->name('vendor.edit');
+
         Route::get('/payment/{id}', 'PackageController@payment')->name('payment');
         Route::get('add_membership','MembershipController@index');
         Route::post('post_membership','MembershipController@package_save');

@@ -15,9 +15,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $helper;
+
+
     public function __construct()
     {
-
+        $this->helper = new HelperController();
         $this->middleware('auth');
     }
 
@@ -50,7 +54,14 @@ class CategoryController extends Controller
     public function category_delete($id)
     {
         $category = Categorie::find($id);
+        $shop = $this->helper->getShopify();
+
+        $response = $shop->rest('DELETE','/admin/api/2020-07/smart_collections/'.$category->shopify_id.'.json');
+
+     //   dd($response);
         $category->delete();
+
+
         return redirect()->back()->with('message', 'Category  Deleted  Successfully');
     }
     public function subcategory_delete($id)

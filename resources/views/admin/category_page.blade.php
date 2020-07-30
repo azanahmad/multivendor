@@ -13,7 +13,7 @@
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{url('admin/dashboard')}}">Dashboard</a>
+                                <a class="link-fx" href="{{url('admin/')}}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">Categories</li>
                         </ol>
@@ -164,10 +164,10 @@
                                                         <input type="text" class="form-control" name="name"
                                                                value="{{$category->name}}">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="">Icon</label>
-                                                        <input type="file" class="form-control" name="icon">
-                                                    </div>
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="">Icon</label>--}}
+{{--                                                        <input type="file" class="form-control" name="icon">--}}
+{{--                                                    </div>--}}
                                                     <div class="form-group text-right">
                                                         <button class="btn btn-sm btn-success " type="submit">Update
                                                         </button>

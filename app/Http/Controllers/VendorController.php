@@ -6,11 +6,13 @@ use App\customer;
 use App\order;
 use App\order_line_items;
 use App\OrderPayments;
+use App\PackageModel;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PayPal\Api\Plan;
 
 class VendorController extends Controller
 {
@@ -66,12 +68,12 @@ class VendorController extends Controller
      */
     public function show()
     {
-            $vendor= DB::table('users')
+        $vendor= DB::table('users')
             ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
             ->select('users.id','users.name','users.email','users.package')
             ->where('model_has_roles.role_id','=','2')
             ->get();
-      return view('vendor.vendor_list')->with(['vendor'=>$vendor]);
+        return view('vendor.vendor_list')->with(['vendor'=>$vendor]);
 
     }
 
@@ -84,7 +86,9 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=DB::table('users')->where('id','=',$id)->first();
+
+        return view('vendor.update',['user'=>$user]);
     }
 
     /**
@@ -96,7 +100,24 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $package = new User();
+        $package->exists=true;
+        $package->id = $id;
+        $package->name = $request->name;
+        $package->email = $request->email;
+        $package->save();
+        if($package ==true){
+
+            return redirect()
+                ->back()
+                ->with('success', 'Package updated successfully');
+        }
+        else{
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('form_error', 'You have made no changes to save');
+        }
     }
 
     /**
@@ -199,5 +220,25 @@ class VendorController extends Controller
             'customer'=>$customer
 
         ]);
+    }
+
+    function delete(Request $request)
+    {
+        $id=$request->id;
+        $delete=DB::table('users')->where('id','=',$id)->delete();
+
+        if($delete)
+        {
+            return redirect()
+                ->back()
+                ->with('success', 'Vendor deleted successfully!');
+        }
+        else
+        {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('form_error', 'Vendor not deleted!');
+        }
     }
 }

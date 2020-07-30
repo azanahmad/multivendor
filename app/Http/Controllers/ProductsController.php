@@ -6,6 +6,7 @@ use App\Categorie;
 use App\Countries;
 use App\Country;
 use App\CountryZone;
+use App\PackageModel;
 use App\Shipping;
 use App\Option1;
 use App\Product_categorie;
@@ -31,8 +32,11 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $helper;
+
     public function __construct()
     {
+        $this->helper = new HelperController();
         $this->middleware('auth');
     }
 
@@ -109,7 +113,7 @@ class ProductsController extends Controller
         else{
             $cat[] ='no category selected';
         }
-                //dd($request->option_title1,'',$request->option_title2,'',$request->option_title3);
+        //dd($request->option_title1,'',$request->option_title2,'',$request->option_title3);
 
         $product = Product::create([
             'vendor_id'=>$id,
@@ -339,6 +343,40 @@ class ProductsController extends Controller
             'name'=>$request->cat_name,
             'icon'=>'no-icon.jpg',
         ]);
+
+
+        $rules= [];
+        array_push($rules,[
+            "column"=> "title",
+            "relation" => "equals",
+            "condition" => "tag"
+        ]);
+
+        $collections=[
+            "smart_collection" =>[
+                "title"=>$request->cat_name,
+                "rules"=>$rules,
+            ]
+        ];
+
+       // dd($collections);
+
+        $shop = $this->helper->getShopify();
+
+        $response = $shop->rest('POST','/admin/api/2020-07/smart_collections.json',$collections)['body']['smart_collection'];
+
+
+
+        $cat = new Categorie();
+        $cat->exists=true;
+        $cat->id = $categories->id;
+        $cat->shopify_id = $response['id'];
+
+        $cat->save();
+
+
+
+
         if ($categories)
         {
             return back()->with('message','Category added successfully');

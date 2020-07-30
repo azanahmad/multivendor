@@ -25,8 +25,6 @@ class CreateOrderPaymentsTable extends Migration
             $table->string('date')->nullable();
             $table->string('tracking')->nullable();
             $table->string('notes')->nullable();
-
-
             $table->timestamps();
         });
     }

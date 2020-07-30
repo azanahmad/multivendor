@@ -52,9 +52,9 @@
                         <thead>
                         <tr>
                             <th class="text-center" style="width: 20px;">ID</th>
-                            <th style="width: 450px;">Vendor Name</th>
+                            <th style="width: 450px;">Store Name</th>
                             <th  style="width: 300px;">Vendor Email</th>
-                            <th style="width: 150px;">Subscription</th>
+{{--                            <th style="width: 150px;">Subscription</th>--}}
                             <th style="width: 150px;">Action</th>
 
                             {{--                            <th style="width: 150px;" class="text-center">Action</th>--}}
@@ -66,7 +66,7 @@
                                 <td>{{$vendor->id}}</td>
                                 <td>{{$vendor->name}}</td>
                                 <td>{{$vendor->email}}</td>
-                                @if($vendor->package=='0')<td><span class="badge badge-danger">un subscribe</span></td>@else <td><span class="badge badge-primary">subscribe</span></td>@endif
+{{--                                @if($vendor->package=='0')<td><span class="badge badge-danger">un subscribe</span></td>@else <td><span class="badge badge-primary">subscribe</span></td>@endif--}}
 {{--                                <td class="text-center">--}}
 {{--                                    <div class="btn-group">--}}
 {{--                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit" onclick="window.location.href='{{route('package.edit',['id'=>$package->id])}}'">--}}
@@ -77,9 +77,18 @@
 {{--                                        </button>--}}
 {{--                                    </div>--}}
 {{--                                </td>--}}
-                                <td> <a class="btn btn-xs btn-sm btn-success" type="button" href="{{route('vendor.history',['id'=>$vendor->id])}}" data-toggle="tooltip" data-original-title="View Detailss">
+                                <td>
+
+                                    <a class="btn btn-xs btn-sm btn-success" type="button" href="{{route('vendor.edit',['id'=>$vendor->id])}}" data-toggle="tooltip" data-original-title="Edit Vendor">
+                                        <i class="fa fa-fw fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-xs btn-sm btn-success" type="button" href="{{route('vendor.history',['id'=>$vendor->id])}}" data-toggle="tooltip" data-original-title="View Details">
                                         <i class="fa fa-eye"></i>
-                                    </a></td>
+                                    </a>
+                                    <a class="btn btn-xs btn-sm btn-success edit_data" type="button" id="{{$vendor->id}}" data-toggle="tooltip" data-original-title="Delete Vendor">
+                                        <i class="fa fa-fw fa-times"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -106,7 +115,7 @@
                     <div class="block-content font-size-sm">
                         <p>Do you really want to delete these records? This process cannot be undone.</p>
                     </div>
-                    <form action="{{ route('package.delete') }}" method="post">
+                    <form action="{{ route('vendor.delete') }}" method="post">
                         @csrf()
                         <input type="hidden" name="id" id="id" class="form-control" />
                         <div class="block-content block-content-full text-right border-top">

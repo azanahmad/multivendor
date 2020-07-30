@@ -83,6 +83,13 @@ class PackageController extends Controller
                 ->withErrors($validator);
         }
 
+        if($request->rates == '0')
+        {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('form_error', 'Amount field must be > 0 ');
+        }
 
 
         $package = new PackageModel();
@@ -422,52 +429,52 @@ class PackageController extends Controller
 
 
         $paymentDefinition = new PaymentDefinition();
-
-        if($charges==0)
-        {
-
-            if ($frequency == 'Month') {
-
-                $in = 1*30;
-
-            }
-
-            if ($frequency == 'Year') {
-
-                $in = 12*30;
-            }
-
-            if ($frequency == "every 6 months") {
-
-
-
-                $in = 6*30;
-
-            }
-
-            if ($frequency == "every 3 months") {
-
-
-                $in = 3*30;
-            }
-
-
-
-            $paymentDefinition->setName($name)
-                ->setType('TRIAL')
-                ->setFrequency('day')
-                ->setFrequencyInterval($in)
-                ->setCycles("1")
-                ->setAmount(new Currency(array('value' => 0, 'currency' => 'USD')));
-        }
-        else {
+//
+//        if($charges==0)
+//        {
+//
+//            if ($frequency == 'Month') {
+//
+//                $in = 1*30;
+//
+//            }
+//
+//            if ($frequency == 'Year') {
+//
+//                $in = 12*30;
+//            }
+//
+//            if ($frequency == "every 6 months") {
+//
+//
+//
+//                $in = 6*30;
+//
+//            }
+//
+//            if ($frequency == "every 3 months") {
+//
+//
+//                $in = 3*30;
+//            }
+//
+//
+//
+//            $paymentDefinition->setName($name)
+//                ->setType('TRIAL')
+//                ->setFrequency('day')
+//                ->setFrequencyInterval($ind)
+//                ->setCycles("1")
+//                ->setAmount(new Currency(array('value' => 0, 'currency' => 'USD')));
+//        }
+//        else {
             $paymentDefinition->setName($name)
                 ->setType($type)
                 ->setFrequency($frequency)
                 ->setFrequencyInterval($frequencyInterval)
                 ->setCycles($cycles)
                 ->setAmount(new Currency(array('value' => $charges, 'currency' => $currency)));
-        }
+    //    }
 
         return $paymentDefinition;
     }
