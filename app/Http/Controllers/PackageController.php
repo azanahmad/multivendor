@@ -126,7 +126,7 @@ class PackageController extends Controller
 
         $plan->setMerchantPreferences($merchantPreferences);
 
-        dd($request->rates);
+
         try{
 
             $basic_plan = $plan->create($this->apicontext);
@@ -135,6 +135,9 @@ class PackageController extends Controller
 
             print_r($ex);
         }
+
+        dd($request->rates);
+
         $package->paypal_plan_id = $basic_plan->id;
 
         $package->status = '0';
