@@ -127,16 +127,18 @@ class PackageController extends Controller
         $plan->setMerchantPreferences($merchantPreferences);
 
 
-        try{
+        try
+        {
 
             $basic_plan = $plan->create($this->apicontext);
 
         } catch (\PayPal\Exception\PayPalConnectionException $ex) {
 
             print_r($ex);
+
         }
 
-        dd($request->rates);
+        dd($paymentDefinition);
 
         $package->paypal_plan_id = $basic_plan->id;
 
@@ -399,6 +401,9 @@ class PackageController extends Controller
 
     public function setCharges($name, $type, $frequency, $frequencyInterval, $cycles, $charges, $currency): PaymentDefinition
     {
+
+
+
         $paymentDefinition = new PaymentDefinition();
         $paymentDefinition->setName($name)
             ->setType($type)
