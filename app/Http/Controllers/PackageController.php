@@ -121,7 +121,7 @@ class PackageController extends Controller
         $paymentDefinition = $this->setCharges($request->plan_description, 'REGULAR', $request->type, $frequency, '12', $request->rates, 'USD');
 
         $merchantPreferences = $this->setmerchantPreferences();
-
+        dd($paymentDefinition);
         $plan->setPaymentDefinitions(array($paymentDefinition));
 
         $plan->setMerchantPreferences($merchantPreferences);
@@ -138,7 +138,7 @@ class PackageController extends Controller
 
         }
 
-        dd($paymentDefinition);
+
 
         $package->paypal_plan_id = $basic_plan->id;
 
