@@ -40,6 +40,19 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->icon =$filename;
         $category_update =$category->save();
+
+        $shop = $this->helper->getShopify();
+
+        $collections=[
+            "smart_collection" =>[
+                "id"=>$request->id,
+                "title"=>$request->name,
+
+            ]
+        ];
+
+        $response = $shop->rest('PUT','/admin/api/2020-07/smart_collections/'.$category->shopify_id.'.json',$collections);
+
         if($category_update)
         {
             return  back()->with('message','Category update successfully');
