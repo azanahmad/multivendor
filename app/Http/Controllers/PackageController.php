@@ -146,50 +146,66 @@ class PackageController extends Controller
         $array=explode(' ',$request->package_name);
         $strip_id=$array[0].rand(10,100).rand(10,100);
         Stripe::setApiKey("sk_test_51H5ARTEmGDZcZ7jtPYU3vAagQXZuRUR0cUdiCilwWt6MAGrAYZdTPCh0fjSEVUglYwoeSXGa55H0IQDWdDy080Dw00fVenefWr");
-        try
-        {
-            if($request->type=='Month')
-            {
-                $fre='month';
-                $in='12';
+        try {
+            if ($request->type == 'Month') {
+                $fre = 'month';
+                $in = '12';
 
             }
 
-            if($request->type=='Year'){
-                $fre='year';
-                $in='1';
+            if ($request->type == 'Year') {
+                $fre = 'year';
+                $in = '1';
             }
 
-            if($request->type=="every 6 months"){
+            if ($request->type == "every 6 months") {
 
 
-                $fre='month';
-                $in='6';
+                $fre = 'month';
+                $in = '6';
 
             }
 
-            if($request->type=="every 3 months"){
+            if ($request->type == "every 3 months") {
 
 
-
-                $fre='month';
-                $in='3';
+                $fre = 'month';
+                $in = '3';
             }
 
-            $rates=$request->rates*100;
+            $rates = $request->rates * 100;
 
+            if ($rates == 0) {
+
+                \Stripe\Plan::create(array(
+                    // "amount" => $request->rates,
+                    "amount" => $rates,
+                    "interval" => $fre,
+                    "interval_count" => '1',
+                    "product" => array(
+                        "name" => $request->package_name
+                    ),
+                    "currency" => "USD",
+                    "id" => "$strip_id",
+                ));
+
+            }
+            else {
 
             \Stripe\Plan::create(array(
                 // "amount" => $request->rates,
-                "amount"=>  $rates,
+                "amount" => $rates,
                 "interval" => $fre,
-                "interval_count"=> $in,
+                "interval_count" => $in,
                 "product" => array(
                     "name" => $request->package_name
                 ),
                 "currency" => "USD",
                 "id" => "$strip_id",
             ));
+        }
+
+
         }
         catch (Exception $msg)
         {
@@ -205,7 +221,8 @@ class PackageController extends Controller
                 ->back()
                 ->with('success', 'Package created successfully');
         }
-        else{
+        else
+         {
             return redirect()
                 ->back()
                 ->withInput()
@@ -405,12 +422,25 @@ class PackageController extends Controller
 
 
         $paymentDefinition = new PaymentDefinition();
-        $paymentDefinition->setName($name)
-            ->setType($type)
-            ->setFrequency($frequency)
-            ->setFrequencyInterval($frequencyInterval)
-            ->setCycles($cycles)
-            ->setAmount(new Currency(array('value' => $charges, 'currency' => $currency)));
+
+        if($charges==0)
+        {
+            $paymentDefinition->setName($name)
+                ->setType('TRIAL')
+                ->setFrequency($frequency)
+                ->setFrequencyInterval("1")
+                ->setCycles("1")
+                ->setAmount(new Currency(array('value' => 0, 'currency' => 'USD')));
+        }
+        else {
+            $paymentDefinition->setName($name)
+                ->setType($type)
+                ->setFrequency($frequency)
+                ->setFrequencyInterval($frequencyInterval)
+                ->setCycles($cycles)
+                ->setAmount(new Currency(array('value' => $charges, 'currency' => $currency)));
+        }
+
         return $paymentDefinition;
     }
 
