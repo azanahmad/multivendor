@@ -134,8 +134,8 @@ class PackageController extends Controller
 
         } catch (\PayPal\Exception\PayPalConnectionException $ex) {
 
-            print_r($ex);
-dd($ex);
+
+        dd($ex);
         }
 
 
