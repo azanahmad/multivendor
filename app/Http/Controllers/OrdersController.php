@@ -61,9 +61,6 @@ class OrdersController extends Controller
 
     function order_sync($order)
     {
-
-
-
         $product_ids = [];
         $variant_ids  = [];
         foreach($order->line_items as $item){
@@ -835,23 +832,6 @@ class OrdersController extends Controller
 //        }
     }
 
-    public function create_carrier(Request $request)
-    {
-        $data = [
-            "carrier_service" => [
-                "name" => 'Shipping Rate Provider',
-                "callback_url" => "https://app.tesanandum.com/",
-                "service_discovery" => true,
 
-            ]
-        ];
-
-        $shop = $this->helper->getShopify();
-
-        $response = $shop->rest('POST ','/admin/api/2020-07/carrier_services.json',$data)['body'];
-
-
-        dd($response);
-    }
 
 }

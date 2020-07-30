@@ -1,5 +1,6 @@
 <?php namespace App\Jobs;
 
+use App\Http\Controllers\HelperController;
 use App\Http\Controllers\OrdersController;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -48,7 +49,7 @@ class OrdersCreateJob implements ShouldQueue
      */
     public function handle()
     {
-       $order=new OrdersController();
+       $order=new HelperController();
        $order->order_sync($this->data);
     }
 }

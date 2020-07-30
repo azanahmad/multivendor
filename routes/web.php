@@ -138,4 +138,4 @@ Route::get('/pricing/', 'PackageController@pricing')->name('package.pricing');
 Route::get('/success', 'PackageController@success')->name('success');
 Route::get('/check','PackageController@check');
 Route::get('/orders/sync','OrdersController@get_shopify_orders')->name('orders.sync');
-Route::get('/create/carrier','OrdersController@create_carrier');
+Route::get('/create/carrier','HelperController@create_carrier');
