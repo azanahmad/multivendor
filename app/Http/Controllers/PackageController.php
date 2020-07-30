@@ -425,10 +425,38 @@ class PackageController extends Controller
 
         if($charges==0)
         {
+
+            if ($frequency == 'Month') {
+
+                $in = 1*30;
+
+            }
+
+            if ($frequency == 'Year') {
+
+                $in = 12*30;
+            }
+
+            if ($frequency == "every 6 months") {
+
+
+
+                $in = 6*30;
+
+            }
+
+            if ($frequency == "every 3 months") {
+
+
+                $in = 3*30;
+            }
+
+
+
             $paymentDefinition->setName($name)
                 ->setType('TRIAL')
-                ->setFrequency($frequency)
-                ->setFrequencyInterval("1")
+                ->setFrequency('day')
+                ->setFrequencyInterval($in)
                 ->setCycles("1")
                 ->setAmount(new Currency(array('value' => 0, 'currency' => 'USD')));
         }
