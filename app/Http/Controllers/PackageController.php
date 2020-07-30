@@ -121,7 +121,7 @@ class PackageController extends Controller
         $paymentDefinition = $this->setCharges($request->plan_description, 'REGULAR', $request->type, $frequency, '12', $request->rates, 'USD');
 
         $merchantPreferences = $this->setmerchantPreferences();
-        dd($paymentDefinition);
+
         $plan->setPaymentDefinitions(array($paymentDefinition));
 
         $plan->setMerchantPreferences($merchantPreferences);
@@ -135,7 +135,7 @@ class PackageController extends Controller
         } catch (\PayPal\Exception\PayPalConnectionException $ex) {
 
             print_r($ex);
-
+dd($ex);
         }
 
 
