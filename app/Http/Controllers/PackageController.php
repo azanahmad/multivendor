@@ -117,7 +117,7 @@ class PackageController extends Controller
 
 
 
-
+        dd($rates);
         $paymentDefinition = $this->setCharges($request->plan_description, 'REGULAR', $request->type, $frequency, '12', $request->rates, 'USD');
 
         $merchantPreferences = $this->setmerchantPreferences();
@@ -173,7 +173,7 @@ class PackageController extends Controller
 
             $rates=$request->rates*100;
 
-            dd($rates);
+
             \Stripe\Plan::create(array(
                 // "amount" => $request->rates,
                 "amount"=>  $rates,
