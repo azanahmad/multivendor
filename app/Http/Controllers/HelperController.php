@@ -282,7 +282,7 @@ class HelperController extends Controller
 
         $shop = $this->getShopify();
 
-        $response = $shop->rest('POST ','/admin/api/2020-07/carrier_services.json',$data)['body'];
+        $response = $shop->rest('POST ','/admin/api/2020-07/carrier_services.json',$data);
 
 
         dd($response);

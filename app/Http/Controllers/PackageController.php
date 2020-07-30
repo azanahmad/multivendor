@@ -95,7 +95,8 @@ class PackageController extends Controller
 
         $frequency='1';
 
-        if($request->type=="every 3 months"){
+        if($request->type=="every 3 months")
+        {
 
 
 
@@ -103,7 +104,8 @@ class PackageController extends Controller
             $frequency='3';
         }
 
-        if($request->type=="every 6 months"){
+        if($request->type=="every 6 months")
+        {
 
 
             $request->type='Month';
@@ -139,7 +141,8 @@ class PackageController extends Controller
         $array=explode(' ',$request->package_name);
         $strip_id=$array[0].rand(10,100).rand(10,100);
         Stripe::setApiKey("sk_test_51H5ARTEmGDZcZ7jtPYU3vAagQXZuRUR0cUdiCilwWt6MAGrAYZdTPCh0fjSEVUglYwoeSXGa55H0IQDWdDy080Dw00fVenefWr");
-        try{
+        try
+        {
             if($request->type=='Month')
             {
                 $fre='month';
@@ -169,6 +172,8 @@ class PackageController extends Controller
             }
 
             $rates=$request->rates*100;
+
+            dd($rates);
             \Stripe\Plan::create(array(
                 // "amount" => $request->rates,
                 "amount"=>  $rates,
@@ -180,7 +185,8 @@ class PackageController extends Controller
                 "currency" => "USD",
                 "id" => "$strip_id",
             ));
-        }catch (Exception $msg)
+        }
+        catch (Exception $msg)
         {
             dd($msg);
         }
