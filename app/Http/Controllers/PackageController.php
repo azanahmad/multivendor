@@ -117,7 +117,7 @@ class PackageController extends Controller
 
 
 
-        dd($rates);
+        dd($request->rates);
         $paymentDefinition = $this->setCharges($request->plan_description, 'REGULAR', $request->type, $frequency, '12', $request->rates, 'USD');
 
         $merchantPreferences = $this->setmerchantPreferences();
