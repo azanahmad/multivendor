@@ -31,7 +31,7 @@
                     <div class="block">
                         <div class="block-header">
                             <h3 class="block-title">
-                               Active Plan Information
+                                Active Plan Information
                             </h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option">
@@ -40,29 +40,29 @@
                         </div>
                         <div class="block-content">
                             @if(isset($agreement))
-                            <p><b>Plan Name : </b>{{$agreement->description}}</p>
+                                <p><b>Plan Name : </b>{{$agreement->description}}</p>
 
                                 @if(isset($package))
-                            <p><b>Products Allow : </b>{{$package->no_products_allow}}</p>
+                                    <p><b>Products Allow : </b>{{$package->no_products_allow}}</p>
                                 @endif
-{{--                            <p><b>Amount : </b>{{$package->rates.' $ / Per '.$package->type}}</p>--}}
-                            <p><b>Plan Status : </b>{{$agreement->state}}</p>
-                            <p><b>Start Date : </b>{{date_create($agreement->start_date)->format('D m, Y h:i a') }}</p>
-                            <p><b>Last Payment Date : </b>{{date_create($agreement_details->last_payment_date)->format('D m, Y h:i a') }}</p>
-                            <p><b>Last Payment Amount : </b>{{'$' .$agreement_details->last_payment_amount->value}}</p>
-                            <p><b>Next Payment Date : </b>{{date_create($agreement_details->next_billing_date)->format('D m, Y h:i a') }}</p>
-                        @endif
+                                {{--                            <p><b>Amount : </b>{{$package->rates.' $ / Per '.$package->type}}</p>--}}
+                                <p><b>Plan Status : </b>{{$agreement->state}}</p>
+                                <p><b>Start Date : </b>{{date_create($agreement->start_date)->format('D m, Y h:i a') }}</p>
+                                <p><b>Last Payment Date : </b>{{date_create($agreement_details->last_payment_date)->format('D m, Y h:i a') }}</p>
+                                <p><b>Last Payment Amount : </b>{{'$' .$agreement_details->last_payment_amount->value}}</p>
+                                <p><b>Next Payment Date : </b>{{date_create($agreement_details->next_billing_date)->format('D m, Y h:i a') }}</p>
+                            @endif
 
-                                @if(isset($details))
+                            @if(isset($details))
 
-                                    @if(isset($package))
+                                @if(isset($package))
                                     <p><b>Plan Name : </b>{{$package->package_name}}</p>
                                     <p><b>Products Allow : </b>{{$package->no_products_allow}}</p>
-                                    @endif
-                                    <p><b>Plan Status : </b>{{$details->status}}</p>
-                                    <p><b>Start Date : </b>{{date("m/d/Y h:i:s A T",$details->start_date)}}</p>
-                                    <p><b>Next Payment Date : </b>{{date("m/d/Y h:i:s A T",$details->current_period_end)}}</p>
                                 @endif
+                                <p><b>Plan Status : </b>{{$details->status}}</p>
+                                <p><b>Start Date : </b>{{date("m/d/Y h:i:s A T",$details->start_date)}}</p>
+                                <p><b>Next Payment Date : </b>{{date("m/d/Y h:i:s A T",$details->current_period_end)}}</p>
+                            @endif
                         </div>
                     </div>
                 </div>
