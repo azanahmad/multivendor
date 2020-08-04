@@ -50,13 +50,13 @@
                             <p><b>Next Payment Date : </b>{{date_create($agreement_details->next_billing_date)->format('D m, Y h:i a') }}</p>
                         @endif
 
-{{--                                @if(isset($details))--}}
-{{--                                    <p><b>Plan Name : </b>{{$package->package_name}}</p>--}}
-{{--                                    <p><b>Products Allow : </b>{{$package->no_products_allow}}</p>--}}
-{{--                                    <p><b>Plan Status : </b>{{$details->status}}</p>--}}
+                                @if(isset($details))
+                                    <p><b>Plan Name : </b>{{$package->package_name}}</p>
+                                    <p><b>Products Allow : </b>{{$package->no_products_allow}}</p>
+                                    <p><b>Plan Status : </b>{{$details->status}}</p>
 {{--                                    <p><b>Start Date : </b>{{date("m/d/Y h:i:s A T",$details->start_date)}}</p>--}}
 {{--                                    <p><b>Next Payment Date : </b>{{date("m/d/Y h:i:s A T",$details->current_period_end)}}</p>--}}
-{{--                                @endif--}}
+                                @endif
                         </div>
                     </div>
                 </div>
