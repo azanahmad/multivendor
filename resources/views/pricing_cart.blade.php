@@ -46,7 +46,7 @@
                                     <div class="col-lg-12">
                                         <!-- Form Labels on top - Default Style -->
                                         <div class="form-group">
-                                            <label for="example-ltf-email">Street Address</label>
+                                            <label for="example-ltf-email">Full Address</label>
                                             <input type="text" class="form-control"  name="street" placeholder="" value="{{old('street')}}" required>
                                         </div>
                                     </div>
