@@ -146,7 +146,7 @@
                                                     <td>
                                                         {{$variant->Quantity}}
                                                     </td>
-                                                    <td> {{$variant->Price}}</td>
+                                                    <td>{{'$'.number_format($variant->Price ,2)}}</td>
                                                     <td> {{$variant->Barcode}}</td>
                                                 </tr>
                                             @endforeach
