@@ -841,6 +841,7 @@ class PackageController extends Controller
             ->where('stripe_status','=','active')
             ->latest('created_at')->first();
 
+        dd($sub);
         if($sub->stripe_id != null)
         {
 
