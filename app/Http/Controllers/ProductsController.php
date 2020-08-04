@@ -347,9 +347,9 @@ class ProductsController extends Controller
 
         $rules= [];
         array_push($rules,[
-            "column"=> "title",
+            "column"=> "tag",
             "relation" => "equals",
-            "condition" => "tag"
+            "condition" =>  $request->cate_name
         ]);
 
         $collections=[
