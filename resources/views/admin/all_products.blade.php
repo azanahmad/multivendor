@@ -101,7 +101,7 @@
                                             </div>
                                         @endif
                                     </td>
-                                    <td><a href="{{route('vendor.history',['id'=>$products->vendor_id])}}">{{$products->vendor->name}}</a></td>
+                                    <td style="vertical-align: middle"><a href="{{route('vendor.history',['id'=>$products->vendor_id])}}">{{$products->vendor->name}}</a></td>
                                     <td style="vertical-align: middle">
 
                                         @if($products->product_status->admin_status=='approved')

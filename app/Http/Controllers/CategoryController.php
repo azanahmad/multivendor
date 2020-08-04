@@ -33,7 +33,8 @@ class CategoryController extends Controller
             $filename = $name;
             $request->icon->move(public_path() . '/icons/', $name);
         }
-        else{
+        else
+            {
             $filename='no-icon.jpg';
         }
         $category = Categorie::find($request->category_id);
