@@ -855,7 +855,7 @@ class PackageController extends Controller
             );
             $plan=PackageModel::where('strip_id',$sub->stripe_plan)->first();
 //dd($details);
-            dd($details);
+
             return view('payment_history')->with(['details'=>$details,'package'=>$plan]);
 
         }
