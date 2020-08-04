@@ -344,7 +344,6 @@ class ProductsController extends Controller
             'icon'=>'no-icon.jpg',
         ]);
 
-
         $rules= [];
         array_push($rules,[
             "column"=> "tag",
