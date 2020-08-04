@@ -841,13 +841,14 @@ class PackageController extends Controller
             ->where('stripe_status','=','active')
             ->latest('created_at')->first();
 
-        dd($sub);
+
         if($sub->stripe_id != null)
         {
 
             $stripe = new \Stripe\StripeClient(
                 env('STRIPE_SECRET')
             );
+            dd($sub);
            $details= $stripe->subscriptions->retrieve(
                 $sub->stripe_id,
                []
