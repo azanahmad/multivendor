@@ -117,6 +117,8 @@ Route::group(['middleware' =>['vendor_role']],function() {
 
     Route::post('image/delete','ProductsController@image_delete')->name('image_delete');
 
+    Route::get('transaction/history','PackageController@transcation')->name('transaction');
+
     //add shipping route
     Route::get('shipping_zone','ShippingZoneController@shipping');
     Route::post('create_zones','ZoneController@create')->name('zone.create');

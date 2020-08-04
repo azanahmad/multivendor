@@ -42,9 +42,9 @@ class PlanMiddleware
                             return $next($request);
                         }
 
-                        if($sub->paypal_status =='Active') {
-                            return $next($request);
-                        }
+//                        if($sub->paypal_status =='Active') {
+//                            return $next($request);
+//                        }
 
                             return redirect()->route('package.pricing');
 

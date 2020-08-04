@@ -770,7 +770,7 @@ MAIN CONTENT LAYOUT
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link " href="{{url('/')}}">
+                        <a class="nav-main-link " href="{{route('transaction')}}">
                             <i class="nav-main-link-icon si si-list"></i>
                             <span class="nav-main-link-name">Transaction History</span>
                         </a>

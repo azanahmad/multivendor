@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\PackageModel;
 use App\Subscription;
 use App\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -152,7 +153,7 @@ class PackageController extends Controller
         $package->status = '0';
         $array=explode(' ',$request->package_name);
         $strip_id=$array[0].rand(10,100).rand(10,100);
-        Stripe::setApiKey("sk_test_51H5ARTEmGDZcZ7jtPYU3vAagQXZuRUR0cUdiCilwWt6MAGrAYZdTPCh0fjSEVUglYwoeSXGa55H0IQDWdDy080Dw00fVenefWr");
+        Stripe::setApiKey(  env('STRIPE_SECRET'));
         try {
             if ($request->type == 'Month') {
                 $fre = 'month';
@@ -381,7 +382,7 @@ class PackageController extends Controller
         $plan = Plan::get($package->paypal_plan_id, $this->apicontext);
         $plan->delete($this->apicontext);
         $stripe = new \Stripe\StripeClient(
-            'sk_test_51H5ARTEmGDZcZ7jtPYU3vAagQXZuRUR0cUdiCilwWt6MAGrAYZdTPCh0fjSEVUglYwoeSXGa55H0IQDWdDy080Dw00fVenefWr'
+            env('STRIPE_SECRET')
         );
         $stripe->plans->delete($package->strip_id, []);
 
@@ -630,7 +631,7 @@ class PackageController extends Controller
                 $subcription->user_id = Auth::id();
                 $subcription->pay_pal_plan_id = $plan_details->paypal_plan_id;
                 $subcription->billing_address = $request->input('street') . ' ' . $request->input('city') . ' ' . $request->input('country') . ' ' . $request->input('zip_code');
-                $subcription->paypal_status = 'new';
+                $subcription->stripe_status = 'new';
                 $subcription->paypal_active_subscription= 'no';
                 $subcription->plan_id=$plan_details->id;
                 $subcription->name='PayPal';
@@ -700,7 +701,7 @@ class PackageController extends Controller
                 $old_subscription = Subscription::where('user_id', Auth::id())
                     ->where('paypal_active_subscription','yes')->first();
                 if($old_subscription != null){
-                    if($old_subscription != null && $old_subscription->paypal_status == 'Active'){
+                    if($old_subscription != null && $old_subscription->paypal_status == 'active'){
 
                         $old_agreement = Agreement::get($old_subscription->paypal_subscription_id, $this->apicontext);
                         $agreementStateDescriptor = new AgreementStateDescriptor();
@@ -708,12 +709,12 @@ class PackageController extends Controller
 
                         $old_agreement->cancel($agreementStateDescriptor, $this->apicontext);
                         $old_subscription->paypal_active_subscription = 'no';
-                        $old_subscription->paypal_status	= "Cancel";
+                        $old_subscription->stripe_status	= "Cancel";
                         $old_subscription->save();
                     }
                     else{
                         $old_subscription->paypal_active_subscription= 'no';
-                        $old_subscription->paypal_status = "Cancel";
+                        $old_subscription->stripe_status = "Cancel";
                         $old_subscription->save();
                     }
                 }
@@ -815,7 +816,7 @@ class PackageController extends Controller
 //            dd($e);
 //        }
         $stripe = new \Stripe\StripeClient(
-            'sk_test_51H5ARTEmGDZcZ7jtPYU3vAagQXZuRUR0cUdiCilwWt6MAGrAYZdTPCh0fjSEVUglYwoeSXGa55H0IQDWdDy080Dw00fVenefWr'
+            env('STRIPE_SECRET')
         );
         $stripe->plans->delete('Professional4433', []);
     }
@@ -830,6 +831,59 @@ class PackageController extends Controller
         return view('pricing_cart',['package'=>$package]);
 
     }
+
+    function transcation()
+    {
+
+        //$sub=Subscription::where('user_id',Auth::id())->get();
+        $sub= DB::table('subscriptions')
+            ->where('user_id','=',Auth::id())
+            ->where('stripe_status','=','active')
+            ->latest('created_at')->first();
+
+        if($sub->stripe_id != null)
+        {
+
+            $stripe = new \Stripe\StripeClient(
+                env('STRIPE_SECRET')
+            );
+           $details= $stripe->subscriptions->retrieve(
+                $sub->stripe_id,
+               []
+            );
+            $plan=PackageModel::where('strip_id',$sub->stripe_plan)->first();
+//dd($details);
+
+            return view('payment_history')->with(['details'=>$details,'package'=>$plan]);
+
+        }
+
+        if($sub->paypal_subscription_id != null)
+        {
+
+            $key=$sub->paypal_subscription_id;
+
+            $plan=PackageModel::where('paypal_plan_id',$sub->pay_pal_plan_id)->first();
+            try{
+
+                $agreement = Agreement::get($key, $this->apicontext);
+                $agreement_details=$agreement->agreement_details;
+
+                return view('payment_history')->with(['agreement'=>$agreement,'package'=>$plan,'agreement_details'=>$agreement_details]);
+
+
+            }catch (PayPal\Exception\PayPalConnectionException $ex)
+            {
+                dd($ex);
+            }
+
+
+        }
+
+
+    }
+
+
 
 }
 

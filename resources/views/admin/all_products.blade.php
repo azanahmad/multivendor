@@ -120,6 +120,12 @@
                                             <a class="btn btn-xs btn-sm btn-success" type="button" href="{{url('admin/product/view/'.$products->id)}}" data-toggle="tooltip" data-original-title="View Product" title="View Product">
                                                 <i class="fa fa-eye"></i>
                                             </a>
+                                            @if($products->shopify_id=='')
+                                                <a href="{{url('edit/'.$products->id)}}" class="btn btn-sm btn-warning"
+                                                   type="button" data-toggle="tooltip" title=""
+                                                   data-original-title="Edit Product"><i
+                                                        class="fa fa-edit"></i></a>
+                                            @endif
 
                                             @if($products->product_status->admin_status=='approved')
                                             @elseif($products->product_status->admin_status=='rejected')

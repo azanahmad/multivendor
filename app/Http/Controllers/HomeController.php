@@ -58,9 +58,9 @@ class HomeController extends Controller
                         return view('dashboard.index');
                     }
 
-                    if($sub->paypal_status =='Active') {
-                        return view('dashboard.index');
-                    }
+//                    if($sub->paypal_status =='Active') {
+//                        return view('dashboard.index');
+//                    }
 
                     return redirect()->route('package.pricing');
 
