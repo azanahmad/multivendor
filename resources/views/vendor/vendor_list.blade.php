@@ -53,8 +53,8 @@
                         <table class="table table-bordered table-striped table-center ">
                             <thead>
                             <tr>
-                                <th class="text-center" style="width: 20px;">ID</th>
-                                <th style="width: 450px;">Store Name</th>
+{{--                                <th class="text-center" style="width: 20px;">ID</th>--}}
+                                <th style="width: 450px;"> Store Name</th>
                                 <th  style="width: 300px;">Vendor Email</th>
                                 {{--                            <th style="width: 150px;">Subscription</th>--}}
                                 <th style="width: 150px;">Action</th>
@@ -63,8 +63,8 @@
                             <tbody>
                             @foreach($vendor as $vendor)
                                 <tr>
-                                    <td>{{$vendor->id}}</td>
-                                    <td>{{$vendor->name}}</td>
+{{--                                    <td>{{$vendor->id}}</td>--}}
+                                    <td><a href="{{route('vendor.history',['id'=>$vendor->id])}}">{{$vendor->name}}</a></td>
                                     <td>{{$vendor->email}}</td>
                                     {{--                                @if($vendor->package=='0')<td><span class="badge badge-danger">un subscribe</span></td>@else <td><span class="badge badge-primary">subscribe</span></td>@endif--}}
                                     {{--                                <td class="text-center">--}}
