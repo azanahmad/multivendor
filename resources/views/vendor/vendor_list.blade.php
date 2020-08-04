@@ -48,37 +48,37 @@
                         </div>
                 @endif
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                        <div class="table-responsive">
-                            <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                            <table class="table table-bordered table-striped table-center ">
-                                <thead>
+                    <div class="table-responsive">
+                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+                        <table class="table table-bordered table-striped table-center ">
+                            <thead>
+                            <tr>
+                                <th class="text-center" style="width: 20px;">ID</th>
+                                <th style="width: 450px;">Store Name</th>
+                                <th  style="width: 300px;">Vendor Email</th>
+                                {{--                            <th style="width: 150px;">Subscription</th>--}}
+                                <th style="width: 150px;">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($vendor as $vendor)
                                 <tr>
-                                    <th class="text-center" style="width: 20px;">ID</th>
-                                    <th style="width: 450px;">Store Name</th>
-                                    <th  style="width: 300px;">Vendor Email</th>
-                                    {{--                            <th style="width: 150px;">Subscription</th>--}}
-                                    <th style="width: 150px;">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($vendor as $vendor)
-                                    <tr>
-                                        <td>{{$vendor->id}}</td>
-                                        <td>{{$vendor->name}}</td>
-                                        <td>{{$vendor->email}}</td>
-                                        {{--                                @if($vendor->package=='0')<td><span class="badge badge-danger">un subscribe</span></td>@else <td><span class="badge badge-primary">subscribe</span></td>@endif--}}
-                                        {{--                                <td class="text-center">--}}
-                                        {{--                                    <div class="btn-group">--}}
-                                        {{--                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit" onclick="window.location.href='{{route('package.edit',['id'=>$package->id])}}'">--}}
-                                        {{--                                            <i class="fa fa-fw fa-pencil-alt"></i>--}}
-                                        {{--                                        </button>--}}
-                                        {{--                                        <button type="button" class="btn btn-sm btn-primary edit_data"  id="{{$package->id}}" data-toggle="tooltip" title="Delete">--}}
-                                        {{--                                            <i class="fa fa-fw fa-times"></i>--}}
-                                        {{--                                        </button>--}}
-                                        {{--                                    </div>--}}
-                                        {{--                                </td>--}}
-                                        <td>
-                                            
+                                    <td>{{$vendor->id}}</td>
+                                    <td>{{$vendor->name}}</td>
+                                    <td>{{$vendor->email}}</td>
+                                    {{--                                @if($vendor->package=='0')<td><span class="badge badge-danger">un subscribe</span></td>@else <td><span class="badge badge-primary">subscribe</span></td>@endif--}}
+                                    {{--                                <td class="text-center">--}}
+                                    {{--                                    <div class="btn-group">--}}
+                                    {{--                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit" onclick="window.location.href='{{route('package.edit',['id'=>$package->id])}}'">--}}
+                                    {{--                                            <i class="fa fa-fw fa-pencil-alt"></i>--}}
+                                    {{--                                        </button>--}}
+                                    {{--                                        <button type="button" class="btn btn-sm btn-primary edit_data"  id="{{$package->id}}" data-toggle="tooltip" title="Delete">--}}
+                                    {{--                                            <i class="fa fa-fw fa-times"></i>--}}
+                                    {{--                                        </button>--}}
+                                    {{--                                    </div>--}}
+                                    {{--                                </td>--}}
+                                    <td style="vertical-align: middle">
+                                        <div class="btn-group mr-2 mb-2" role="group" aria-label="Alternate Primary First group">
                                             <a href="{{route('vendor.edit',['id'=>$vendor->id])}}" class="btn btn-sm btn-warning"
                                                type="button" data-toggle="tooltip" title=""
                                                data-original-title="Edit Vendor"><i
@@ -87,25 +87,25 @@
                                                 <i class="fa fa-eye"></i>
                                             </a>
 
-                                            <a  class="btn btn-sm btn-danger edit_data" id="{{$vendor->id}}"
-                                               type="button" data-toggle="tooltip" title=""
-                                               data-original-title="Delete Vendor"><i class="fa fa-times"></i></a>
+                                            <a  class="btn btn-sm btn-danger edit_data" href="#" id="{{$vendor->id}}"
+                                                type="button" data-toggle="tooltip" title=""
+                                                data-original-title="Delete Vendor"><i class="fa fa-times"></i></a>
 
 
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                                        </td>
-                                    </tr>
-                                @endforeach
 
+                            </tbody>
 
-                                </tbody>
+                        </table>
+                        {{--                            <div class="float-right">--}}
+                        {{--                                {{ $product->links() }}--}}
+                        {{--                            </div>--}}
 
-                            </table>
-{{--                            <div class="float-right">--}}
-{{--                                {{ $product->links() }}--}}
-{{--                            </div>--}}
-
-                        </div>
+                    </div>
                 </div>
             </div>
             <!-- END Dynamic Table Full -->
