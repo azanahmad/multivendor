@@ -848,14 +848,14 @@ class PackageController extends Controller
             $stripe = new \Stripe\StripeClient(
                 env('STRIPE_SECRET')
             );
-            dd($sub);
+
            $details= $stripe->subscriptions->retrieve(
                 $sub->stripe_id,
                []
             );
             $plan=PackageModel::where('strip_id',$sub->stripe_plan)->first();
 //dd($details);
-
+            dd($details);
             return view('payment_history')->with(['details'=>$details,'package'=>$plan]);
 
         }
