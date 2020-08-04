@@ -61,7 +61,7 @@
                                     @if($product->has_image)
                                         @foreach ($product->has_image as $picture)
                                         <div class="col-md-4">
-                                            <img src="{{ asset('images/'.$picture->src)}}" alt="not" style="height:120px; width:200px"/>
+                                            <img src="{{ asset('images/'.$picture->src)}}" alt="not" style="height:120px; width:100%"/>
                                         </div>
                                             @endforeach
                                     @endif
