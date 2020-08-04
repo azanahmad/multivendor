@@ -53,7 +53,7 @@
                                 @if(isset($details))
                                     <p><b>Plan Name : </b>{{$package->package_name}}</p>
                                     <p><b>Products Allow : </b>{{$package->no_products_allow}}</p>
-                                    <p><b>Plan Status : </b>{{$details->status}}</p>
+{{--                                    <p><b>Plan Status : </b>{{$details->status}}</p>--}}
 {{--                                    <p><b>Start Date : </b>{{date("m/d/Y h:i:s A T",$details->start_date)}}</p>--}}
 {{--                                    <p><b>Next Payment Date : </b>{{date("m/d/Y h:i:s A T",$details->current_period_end)}}</p>--}}
                                 @endif
