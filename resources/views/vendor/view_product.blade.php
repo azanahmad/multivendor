@@ -51,12 +51,12 @@
 //                            ?>
                             <div class="row js-gallery" >
 
-                                <div class="col-md-12 mb2">
-                                    <div class="img-link img-link-zoom-in img-lightbox">
-                                        <img class="img-fluid" src="{{asset('images/'.$product->Image)}}" alt="">
-                                    </div>
+{{--                                <div class="col-md-12 mb2">--}}
+{{--                                    <div class="img-link img-link-zoom-in img-lightbox">--}}
+{{--                                        <img class="img-fluid" src="{{asset('images/'.$product->Image)}}" alt="">--}}
+{{--                                    </div>--}}
 
-                                </div>
+{{--                                </div>--}}
 
                                     @if($product->has_image)
                                         @foreach ($product->has_image as $picture)
@@ -105,7 +105,7 @@
                             <h3>
                                 Discription
                             </h3>
-                            <p><div>{!!$product->Discription!!}.</div>                        <!-- END Vital Info -->
+                            <p><div>{!!$product->Discription!!}</div>                        <!-- END Vital Info -->
                         </div>
                         <div class="col-md-12">
 
