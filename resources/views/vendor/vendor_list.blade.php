@@ -78,16 +78,21 @@
                                         {{--                                    </div>--}}
                                         {{--                                </td>--}}
                                         <td>
-
-                                            <a class="btn btn-xs btn-sm btn-success" type="button" href="{{route('vendor.edit',['id'=>$vendor->id])}}" data-toggle="tooltip" data-original-title="Edit Vendor" title="Edit Vendor">
-                                                <i class="fa fa-fw fa-edit"></i>
-                                            </a>
+                                            
+                                            <a href="{{route('vendor.edit',['id'=>$vendor->id])}}" class="btn btn-sm btn-warning"
+                                               type="button" data-toggle="tooltip" title=""
+                                               data-original-title="Edit Vendor"><i
+                                                    class="fa fa-edit"></i></a>
                                             <a class="btn btn-xs btn-sm btn-success" type="button" href="{{route('vendor.history',['id'=>$vendor->id])}}" data-toggle="tooltip" data-original-title="View Details">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a class="btn btn-xs btn-sm btn-success edit_data" type="button" id="{{$vendor->id}}" data-toggle="tooltip" data-original-title="Delete Vendor">
-                                                <i class="fa fa-fw fa-times"></i>
-                                            </a>
+
+                                            <a  class="btn btn-sm btn-danger edit_data" id="{{$vendor->id}}"
+                                               type="button" data-toggle="tooltip" title=""
+                                               data-original-title="Delete Vendor"><i class="fa fa-times"></i></a>
+
+
+
                                         </td>
                                     </tr>
                                 @endforeach
