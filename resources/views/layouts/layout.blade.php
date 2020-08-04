@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>@yield('title','home')</title>
-
-    <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <title>@yield('title','Te Sanandum, The Ibiza Boho Lifestyle')</title>
+    <meta name="description" content="Te Sanandum, The Ibiza Boho Lifestyle is a Spain based Spiritual and etnical Marketplace were people can buy and sell physical and digital goods all over the world. Yoga, Boho, Jewelry, Services, Meditation, Reiki, Crystals, Gongs, Incense and much more. Join us and take your business to a new level">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
 
