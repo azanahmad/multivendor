@@ -680,33 +680,28 @@ MAIN CONTENT LAYOUT
                         </ul>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-layers"></i>
+                        <a class="nav-main-link " href="{{url('admin/all_products')}}">
+                            <i class="nav-main-link-icon si si-bag"></i>
                             <span class="nav-main-link-name">Products</span>
                         </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="{{url('admin/all_products')}}">
-                                    <i class="nav-main-link-icon si si-bag"></i>
-                                    <span class="nav-main-link-name">All Products</span>
-                                </a>
-                            </li>
-
-                        </ul>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <a class="nav-main-link " href="{{url('admin/add_categories')}}">
                             <i class="nav-main-link-icon si si-layers"></i>
                             <span class="nav-main-link-name">Categories</span>
                         </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="{{url('admin/add_categories')}}">
-                                    <i class="nav-main-link-icon si si-bag"></i>
-                                    <span class="nav-main-link-name">Add Categories</span>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link " href="{{route('vendor.show')}}">
+                            <i class="nav-main-link-icon fa fa-store"></i>
+                            <span class="nav-main-link-name">Vendors</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link " href="{{route('orders.index')}}">
+                            <i class="nav-main-link-icon si si-layers"></i>
+                            <span class="nav-main-link-name">Orders</span>
+                        </a>
                     </li>
 {{--                    <li class="nav-main-item">--}}
 {{--                        <a class="nav-main-link" href="{{url('admin/shipping_zone')}}">--}}
@@ -714,39 +709,21 @@ MAIN CONTENT LAYOUT
 {{--                            <span class="nav-main-link-name">Shipping Zones</span>--}}
 {{--                        </a>--}}
 {{--                    </li>--}}
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon fa fa-store"></i>
-                            <span class="nav-main-link-name">Vendors</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="{{route('vendor.show')}}">
-                                    <span class="nav-main-link-name">Vendors List</span>
-                                </a>
-                            </li>
-                            {{--                        <li class="nav-main-item">--}}
-                            {{--                            <a class="nav-main-link" href="be_blocks_options.html">--}}
-                            {{--                                <span class="nav-main-link-name">View Packages</span>--}}
-                            {{--                            </a>--}}
-                            {{--                        </li>--}}
-                        </ul>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-layers"></i>
-                            <span class="nav-main-link-name">Orders</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="{{route('orders.index')}}">
-                                    <i class="nav-main-link-icon si si-bag"></i>
-                                    <span class="nav-main-link-name">All Orders</span>
-                                </a>
-                            </li>
+{{--                    <li class="nav-main-item">--}}
+{{--                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">--}}
+{{--                            <i class="nav-main-link-icon si si-layers"></i>--}}
+{{--                            <span class="nav-main-link-name">Orders</span>--}}
+{{--                        </a>--}}
+{{--                        <ul class="nav-main-submenu">--}}
+{{--                            <li class="nav-main-item">--}}
+{{--                                <a class="nav-main-link" href="">--}}
+{{--                                    <i class="nav-main-link-icon si si-bag"></i>--}}
+{{--                                    <span class="nav-main-link-name">All Orders</span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
 
-                        </ul>
-                    </li>
+{{--                        </ul>--}}
+{{--                    </li>--}}
                 <?php
                         }
                     if($role[0]==2)
