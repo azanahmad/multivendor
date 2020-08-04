@@ -1195,6 +1195,23 @@ MAIN CONTENT LAYOUT
 
     });
 </script>
+<script type="text/javascript">
+    function GTranslateGetCurrentLang() {if(typeof document.getElementsByTagName('html')[0] != 'undefined')return document.getElementsByTagName('html')[0].getAttribute('lang');return null;}
+    function gt_loadScript(url,callback){var script=document.createElement("script");script.type="text/javascript";if(script.readyState){script.onreadystatechange=function(){if(script.readyState=="loaded"||script.readyState=="complete"){script.onreadystatechange=null;callback()}}}else{script.onload=function(){callback()}}script.src=url;document.getElementsByTagName("head")[0].appendChild(script)}
+    var gtSwitcherJS = function($){/*{auto_detect_code}*/
+        $('.switcher .selected').click(function() {$('.switcher .option a img').each(function() {if(!$(this)[0].hasAttribute('src'))$(this).attr('src', $(this).attr('data-gt-lazy-src'))});if(!($('.switcher .option').is(':visible'))) {$('.switcher .option').stop(true,true).delay(100).slideDown(500);$('.switcher .selected a').toggleClass('open')}});
+        $('.switcher .option').bind('mousewheel', function(e) {var options = $('.switcher .option');if(options.is(':visible'))options.scrollTop(options.scrollTop() - e.originalEvent.wheelDelta);return false;});
+        $('body').not('.switcher').bind('click', function(e) {if($('.switcher .option').is(':visible') && e.target != $('.switcher .option').get(0)) {$('.switcher .option').stop(true,true).delay(100).slideUp(500);$('.switcher .selected a').toggleClass('open')}});
+        if(typeof GTranslateGetCurrentLang == 'function')if(GTranslateGetCurrentLang() != null)$(document).ready(function() {var lang_html = $('div.switcher div.option').find('img[alt="'+GTranslateGetCurrentLang()+'"]').parent().html();if(typeof lang_html != 'undefined')$('div.switcher div.selected a').html(lang_html.replace('data-gt-lazy-', ''));});
+    };
+    gt_loadScript("//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js", function(){jQuery_gtranslate = jQuery.noConflict(true);gtSwitcherJS(jQuery_gtranslate);});
+</script>
+
+
+<script type="text/javascript">
+    var gt_request_uri = location.pathname+location.search;
+    function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];if(typeof _gaq!='undefined'){_gaq.push(['_trackEvent', 'GTranslate', lang, location.hostname+location.pathname+location.search]);}else {if(typeof ga == 'function')ga('send', 'event', 'GTranslate', lang, location.hostname+location.pathname+location.search);}var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw' && plang != 'hmn' && plang != 'haw' && plang != 'ceb')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '[.]'), '')+(typeof gt_request_uri != 'undefined' ? gt_request_uri : location.pathname+location.search);}
+</script>
 @yield('scripts')
 </body>
 </html>
